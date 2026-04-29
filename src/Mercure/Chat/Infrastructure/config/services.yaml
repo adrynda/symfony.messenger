@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  App\Mercure\Chat\Application\Action\LoadChat\LoadChatAction: ~
+
+  App\Mercure\Chat\Application\Action\MessageChat\MessageChatAction: ~
+
+  App\Mercure\Chat\Domain\Service\PublisherInterface:
+    class: App\Mercure\Chat\Infrastructure\Service\Publisher

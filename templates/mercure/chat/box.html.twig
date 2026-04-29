@@ -1,0 +1,265 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+<style>
+#chat2 .form-control {
+    border-color: transparent;
+}
+
+#chat2 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+#chat2 .card-body {
+    overflow-y: auto !important;
+    height: 400px !important;
+    position: relative;
+}
+</style>
+
+<section >
+  <div class="container py-5">
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-6">
+
+        <div class="card" id="chat2">
+          <div class="card-header d-flex justify-content-between align-items-center p-3">
+            <h5 class="mb-0">Chat</h5>
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm" data-mdb-ripple-color="dark">Let's Chat
+              App</button>
+          </div>
+          <div class="card-body" data-mdb-perfect-scrollbar-init style="position: relative; height: 400px"></div>
+          <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+            <img src="{{ user.avatar }}"
+              alt="{{ user.username }}" style="width: 40px; height: 100%;">
+            <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
+              placeholder="Type message">
+            <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
+            <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
+            <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.currentUser = User.fromJson(JSON.parse('{{ user.toArray()|json_encode()|raw }}'));
+    Chat.fromJson(JSON.parse('{{ chat.toArray()|json_encode()|raw }}'));
+
+    document.getElementById('exampleFormControlInput1').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        window.chat.sendMessage(this.value);
+        this.value = '';
+      }
+    });
+  });
+
+
+  class Chat
+  {
+    #id;
+    #users = [];
+    #messages = [];
+
+    static fromJson(data)
+    {
+      window.chat = new Chat(data.id);
+
+      data.users.forEach((userData) => {
+        window.chat.addUser(userData.id == window.currentUser.id ? window.currentUser : User.fromJson(userData));
+      });
+
+      data.messages.forEach((messageData) => {
+        window.chat.addMessage(Message.fromJson(messageData));
+      });
+
+      return window.chat;
+    }
+
+    constructor (id)
+    {
+      this.#id = id;
+      this.#registerMercureListener();
+    }
+
+    #registerMercureListener()
+    {
+        const eventSource = new EventSource(
+            '{{ mercure(chat.id)|escape('js') }}'
+        );
+
+        eventSource.onmessage = event => {
+          this.addMessage(Message.fromJson(JSON.parse(event.data)));
+        };
+
+        {# eventSource.onerror = error => {
+            console.error('Mercure error:', error);
+        }; #}
+    }
+
+    addUser(user)
+    {
+      this.#users.push(user);
+    }
+
+    findUser(id)
+    {
+      return this.#users.filter((user) => {
+        return user.getId() == id;
+      })[0] || null;
+    }
+
+    addMessage(message)
+    {
+      this.#messages.push(message);
+
+      const messageHtml = message.prepareHtmlElement();
+      document.querySelector('div.card-body').append(messageHtml);
+      messageHtml.scrollIntoView();
+    }
+
+    sendMessage(content)
+    {
+      fetch('/mercure/chat/send-message', {
+        method: 'POST',
+        body: JSON.stringify({
+          content: content,
+          user_id: window.currentUser.getId(),
+          chat_id: this.#id,
+        }),
+      });
+    }
+  }
+
+  class Message
+  {
+    #id;
+    #user;
+    #sentAt;
+    #content;
+
+    static fromJson(data)
+    {
+      return new Message(
+        data.id,
+        window.chat.findUser(data.user_id),
+        new Date(data.sent_at.date),
+        data.content,
+      );
+    }
+
+    constructor(id, user, sentAt, content)
+    {
+      this.#id = id;
+      this.#user = user;
+      this.#sentAt = sentAt;
+      this.#content = content;
+    }
+
+    getId()
+    {
+      return this.#id;
+    }
+
+    getUser()
+    {
+      return this.#user;
+    }
+
+    getSentAt()
+    {
+      return this.#sentAt;
+    }
+
+    getContent()
+    {
+      return this.#content;
+    }
+
+    prepareHtmlElement()
+    {
+      const isCurrentUser = window.currentUser.getId() == this.#user.getId();
+
+      const message = document.createElement('div');
+      message.className = 'd-flex flex-row ';
+      message.className += isCurrentUser ? 'justify-content-end' : 'justify-content-start mb-4';
+
+      const container = document.createElement('div');
+      message.append(container);
+
+      const content = document.createElement('p');
+      content.className = 'small p-2 mb-1 ms-3 rounded-3 ';
+      content.className += isCurrentUser ? 'text-white bg-primary' : 'bg-body-tertiary';
+      content.textContent = this.#content;
+      container.append(content);
+
+      const time = document.createElement('p');
+      time.className = 'small ms-3 mb-3 rounded-3 text-muted';
+      if (isCurrentUser) {
+        time.className += ' d-flex justify-content-end';
+      }
+      time.textContent = this.#sentAt.toLocaleTimeString('pl-PL', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      container.append(time);
+
+      const avatar = document.createElement('img');
+      avatar.setAttribute('style', 'width: 45px; height: 100%;');
+      avatar.src = this.#user.getAvatar();
+      avatar.alt = this.#user.getUsername();
+      message.append(avatar);
+
+      return message;
+    }
+  }
+
+  class User
+  {
+    #id;
+    #username;
+    #avatar;
+
+    static fromJson(data)
+    {
+      return new User(data.id, data.username, data.avatar);
+    }
+
+    constructor (id, username, avatar)
+    {
+      this.#id = id;
+      this.#username = username;
+      this.#avatar = avatar;
+    }
+
+    getId()
+    {
+      return this.#id;
+    }
+
+    getUsername()
+    {
+      return this.#username;
+    }
+
+    getAvatar()
+    {
+      return this.#avatar;
+    }
+  }
+</script>

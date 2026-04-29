@@ -1,0 +1,2 @@
+imports:
+  - { resource: '../Chat/Infrastructure/config/messenger.yaml' }
