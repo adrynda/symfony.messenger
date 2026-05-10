@@ -1,5 +1,5 @@
 imports:
-    - { resource: '../../src/Mercure/config/messenger.yaml' }
+    - { resource: '../../src/Messenger/Mercure/config/messenger.yaml' }
 
 framework:
     messenger:
