@@ -23,12 +23,20 @@ class Chat extends AbstractUuidEntity
 
         #[ORM\ManyToMany(targetEntity: User::class, cascade: ['persist'])]
         #[ORM\JoinTable(name: 'chats_users')]
-        private readonly Collection $users,
+        private Collection $users,
 
         #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'chat', cascade: ['persist', 'remove'], orphanRemoval: true)]
-        private readonly Collection $messages,
+        private Collection $messages,
     ) {
         parent::__construct($id);
+
+        foreach ($users as $user) {
+            $user->addChat($this);
+        }
+
+//        foreach ($messages as $message) {
+//            $message->addChat($this);
+//        }
     }
 
     /**
@@ -55,6 +63,7 @@ class Chat extends AbstractUuidEntity
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
+            $user->addChat($this);
         }
 
         return $this;

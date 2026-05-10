@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Messenger\_Shared\DataFixture;
+namespace App\Messenger\_Shared\DataFixtures;
 
 use App\Messenger\_Shared\Domain\WriteModel\AbstractUuidEntity;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use ReflectionClass;
 use Symfony\Component\Uid\UuidV1;
 
-abstract class AbstractFixture
+trait ReflectionFixturesTrait
 {
-    protected static function createEntityWithDefaultId(
+    protected function createEntityWithDefaultId(
         string $entityClass,
         UuidV1 $id,
     ): AbstractUuidEntity {
@@ -26,7 +27,7 @@ abstract class AbstractFixture
         return $entity;
     }
 
-    protected static function setReflectedPropertyValue(
+    protected function setReflectedPropertyValue(
         object $entity,
         string $property,
         mixed $value,

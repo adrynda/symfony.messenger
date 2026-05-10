@@ -12,10 +12,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Credentials implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __construct(
-        #[ORM\Column(type: 'email', unique: true)]
+        #[ORM\Column(type: 'string', length: 50, unique: true)]
         public string $email,
 
-        #[ORM\Column(type: 'text')]
+        #[ORM\Column(type: 'string')]
         public string $password,
     ) {
     }

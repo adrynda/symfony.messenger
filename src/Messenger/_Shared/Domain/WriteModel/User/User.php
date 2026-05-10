@@ -30,10 +30,10 @@ class User extends AbstractUuidEntity
         public string $avatar,
 
         #[ORM\ManyToMany(targetEntity: Chat::class, mappedBy: 'users')]
-        private readonly Collection $chats,
+        private Collection $chats,
 
         #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'user', cascade: ['persist', 'remove'], orphanRemoval: true)]
-        private readonly Collection $messages,
+        private Collection $messages,
 
         #[ORM\Embedded(Credentials::class)]
         public readonly Credentials $credentials,
@@ -64,5 +64,15 @@ class User extends AbstractUuidEntity
                 $password,
             ),
         );
+    }
+
+    public function addChat(Chat $chat): self
+    {
+        if (!$this->chats->contains($chat)) {
+            $this->chats->add($chat);
+            $chat->addUser($this);
+        }
+
+        return $this;
     }
 }

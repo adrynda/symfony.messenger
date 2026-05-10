@@ -32,6 +32,7 @@ class Message extends AbstractUuidEntity
         public string $content,
     ) {
         parent::__construct($id);
+
         $user->addMessage($this);
         $chat->addMessage($this);
     }

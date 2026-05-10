@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\Infrastructure\Persistence\Chat\Write;
 
-use App\Messenger\_Shared\DataFixture\ChatFixture;
+use App\Messenger\_Shared\DataFixtures\ChatFixture;
 use App\Messenger\_Shared\Domain\Repository\Chat\Write\ChatRepositoryInterface;
 use App\Messenger\_Shared\Domain\WriteModel\Chat;
 use Symfony\Component\Uid\UuidV1;

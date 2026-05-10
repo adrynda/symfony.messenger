@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\Infrastructure\Persistence\Chat\Read;
 
-use App\Messenger\_Shared\DataFixture\ChatFixture;
+use App\Messenger\_Shared\DataFixtures\ChatFixture;
 use App\Messenger\_Shared\Domain\ReadModel\ChatView;
 use App\Messenger\_Shared\Domain\Repository\Chat\Read\ChatRepositoryInterface;
 use Symfony\Component\Uid\UuidV1;
