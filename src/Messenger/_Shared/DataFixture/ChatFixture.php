@@ -15,7 +15,7 @@ use ReflectionClass;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV1;
 
-class ChatFixture
+class ChatFixture extends AbstractFixture
 {
     public static function createChat(UuidV1 $chatId): Chat
     {
@@ -40,32 +40,6 @@ class ChatFixture
         self::fillMessages($chat);
 
         return $chat;
-    }
-
-    private static function createEntityWithDefaultId(
-        string $entityClass,
-        UuidV1 $id,
-    ): AbstractUuidEntity {
-        $reflection = new ReflectionClass($entityClass);
-        /** @var AbstractUuidEntity $entity */
-        $entity = $reflection->newInstanceWithoutConstructor();
-
-        $abstractReflection = new ReflectionClass(AbstractUuidEntity::class);
-
-        $property = $abstractReflection->getProperty('id');
-        $property->setValue($entity, $id);
-
-        return $entity;
-    }
-
-    private static function setReflectedPropertyValue(
-        object $entity,
-        string $property,
-        mixed $value,
-    ): void {
-        $reflection = new ReflectionClass($entity::class);
-        $property = $reflection->getProperty($property);
-        $property->setValue($entity, $value);
     }
 
     private static function fillMessages(Chat $chat): void

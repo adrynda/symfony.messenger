@@ -26,7 +26,7 @@ final readonly class SendMessageHandler
     public function __invoke(SendMessageCommand $command): void
     {
         $chat = $this->chatRepository->getById($command->chatId);
-        $user = current(array_filter($chat->getUsers(), fn (User $user) => $user->id->equals($command->userId)));
+        $user = $chat->getUsers()->findFirst(fn (int $key, User $user) => $user->id->equals($command->userId));
 
         $message = Message::create(
             $user,
