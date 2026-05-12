@@ -25,14 +25,14 @@ final class ChatController extends AbstractController
 
     private MessageBusInterface $messageBus;
 
-    #[Route('/load/{id?}', name: '_load', methods: ['GET'])]
+    #[Route('/load/{id}', name: '_load', methods: ['GET'])]
     public function load(
-        ?UuidV1 $id = null,
+        UuidV1 $id,
         #[Autowire(service: 'mercure.chat.query.bus')]
         MessageBusInterface $queryBus,
     ): Response {
         $this->messageBus = $queryBus;
-        $chat = $this->handle(new LoadChatQuery($id ?: Uuid::v1()));
+        $chat = $this->handle(new LoadChatQuery($id, 5));
 
         if (empty($id)) {
             return $this->redirect('/mercure/chat/load/' . $chat->id->toString());

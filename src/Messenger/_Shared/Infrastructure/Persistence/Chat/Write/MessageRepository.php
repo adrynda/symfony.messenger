@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\Infrastructure\Persistence\Chat\Write;
 
-use App\Messenger\_Shared\Domain\Repository\Chat\Write\ChatRepositoryInterface;
-use App\Messenger\_Shared\Domain\WriteModel\Chat;
+use App\Messenger\_Shared\Domain\Repository\Chat\Write\MessageRepositoryInterface;
+use App\Messenger\_Shared\Domain\WriteModel\Message;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class ChatRepository extends ServiceEntityRepository implements ChatRepositoryInterface
+final class MessageRepository extends ServiceEntityRepository implements MessageRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Chat::class);
+        parent::__construct($registry, Message::class);
     }
 
-    public function save(Chat $chat): void
+    public function save(Message $user): void
     {
         $em = $this->getEntityManager();
-        $em->persist($chat);
+        $em->persist($user);
         $em->flush();
     }
 }

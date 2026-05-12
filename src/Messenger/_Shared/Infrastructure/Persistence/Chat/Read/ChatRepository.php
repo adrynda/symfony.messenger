@@ -4,28 +4,15 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\Infrastructure\Persistence\Chat\Read;
 
-use App\Messenger\_Shared\DataFixtures\ChatFixture;
-use App\Messenger\_Shared\Domain\ReadModel\ChatView;
 use App\Messenger\_Shared\Domain\Repository\Chat\Read\ChatRepositoryInterface;
-use Symfony\Component\Uid\UuidV1;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
+use App\Messenger\_Shared\Domain\WriteModel\Chat;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-final class ChatRepository implements ChatRepositoryInterface
+final class ChatRepository extends ServiceEntityRepository implements ChatRepositoryInterface
 {
-    public function __construct(
-        private readonly CacheInterface $cache,
-    ) {
-    }
-
-    public function getById(UuidV1 $id): ChatView
+    public function __construct(ManagerRegistry $registry)
     {
-        $chat = $this->cache->get('chat ' . $id, function (ItemInterface $item) use ($id) {
-            $item->expiresAfter(60 * 60);
-
-            return ChatFixture::createChat($id);
-        });
-
-        return ChatView::fromEntity($chat);
+        parent::__construct($registry, Chat::class);
     }
 }

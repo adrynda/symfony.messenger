@@ -4,23 +4,20 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\DataFixtures;
 
-use App\Messenger\_Shared\Domain\WriteModel\AbstractUuidEntity;
+use App\Core\Domain\WriteModel\User\User;
 use App\Messenger\_Shared\Domain\WriteModel\Chat;
 use App\Messenger\_Shared\Domain\WriteModel\Message;
-use App\Messenger\_Shared\Domain\WriteModel\User\User;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ObjectManager;
-use ReflectionClass;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Uid\UuidV1;
 
 class ChatFixture extends AbstractFixture
 {
     use ReflectionFixturesTrait;
 
     private ObjectManager $manager;
+
     public function load(ObjectManager $manager): void
     {
         $this->manager = $manager;

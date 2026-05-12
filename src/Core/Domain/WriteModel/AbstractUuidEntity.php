@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Messenger\_Shared\Domain\WriteModel;
+namespace App\Core\Domain\WriteModel;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;

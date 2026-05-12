@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Messenger\Mercure\Chat\Infrastructure\EventListener;
 
-use App\Messenger\_Shared\DataFixture\ChatFixture;
 use App\Messenger\_Shared\Domain\WriteModel\Chat;
 use App\Messenger\Mercure\Chat\Domain\Event\SentMessageEvent;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -22,6 +21,7 @@ final readonly class CacheSentMessageEventListener
 
     public function __invoke(SentMessageEvent $event): void
     {
+        // todo: tutaj coś
         $chat = $this->getChat($event->message->chat->id);
         $chat->addMessage($event->message);
         $this->saveChat($chat);
@@ -31,6 +31,7 @@ final readonly class CacheSentMessageEventListener
 
     private function getChat(UuidV1 $id): Chat
     {
+        dd('asd');
         return $this->cache->get('chat ' . $id, function (ItemInterface $item) use ($id) {
             $item->expiresAfter(60 * 60);
 

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\Domain\WriteModel;
 
-use App\Messenger\_Shared\Domain\WriteModel\User\User;
+use App\Core\Domain\WriteModel\AbstractUuidEntity;
+use App\Core\Domain\WriteModel\User\User;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;

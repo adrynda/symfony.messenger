@@ -1,4 +1,5 @@
 imports:
+    - { resource: '../../src/Core/Infrastructure/config/messenger.yaml' }
     - { resource: '../../src/Messenger/Mercure/config/messenger.yaml' }
 
 framework:

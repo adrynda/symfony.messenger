@@ -1,0 +1,26 @@
+framework:
+    messenger:
+        default_bus: core.registration.command.bus
+        buses:
+            core.registration.command.bus:
+                # middleware:
+                #     - validation
+                #     - doctrine_transaction
+
+        transports:
+            sync: 'sync://'
+            async:
+                dsn: "%env(REDIS_URL)%"
+                options:
+                    stream: messages
+
+        routing:
+            '\App\Core\Application\Command\RegisterUser\RegisterUserHandler': sync
+
+# when@test:
+#    framework:
+#        messenger:
+#            transports:
+#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
+#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                async: 'in-memory://'

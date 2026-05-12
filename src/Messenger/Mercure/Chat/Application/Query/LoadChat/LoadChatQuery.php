@@ -10,6 +10,7 @@ final readonly class LoadChatQuery
 {
     public function __construct(
         public UuidV1 $chatId,
+        public int $limit = 20,
     ) {
     }
 }

@@ -17,6 +17,7 @@ final readonly class ChatView
         public array $messages = [],
     ) {}
 
+    /** @deprecated messages will be limited to last n */
     public static function fromEntity(Chat $entity): static
     {
         return new self(

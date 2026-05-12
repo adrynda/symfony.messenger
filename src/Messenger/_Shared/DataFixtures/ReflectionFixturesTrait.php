@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\DataFixtures;
 
-use App\Messenger\_Shared\Domain\WriteModel\AbstractUuidEntity;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Core\Domain\WriteModel\AbstractUuidEntity;
 use ReflectionClass;
 use Symfony\Component\Uid\UuidV1;
 

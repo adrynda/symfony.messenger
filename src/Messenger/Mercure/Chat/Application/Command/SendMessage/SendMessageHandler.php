@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Messenger\Mercure\Chat\Application\Command\SendMessage;
 
+use App\Core\Domain\WriteModel\User\User;
 use App\Messenger\_Shared\Domain\Repository\Chat\Write\ChatRepositoryInterface;
+use App\Messenger\_Shared\Domain\WriteModel\Chat;
 use App\Messenger\_Shared\Domain\WriteModel\Message;
-use App\Messenger\_Shared\Domain\WriteModel\User\User;
 use App\Messenger\Mercure\Chat\Domain\DTO\PublishMessageDTO;
 use App\Messenger\Mercure\Chat\Domain\Event\SentMessageEvent;
 use App\Messenger\Mercure\Chat\Domain\Service\PublisherInterface;
@@ -25,7 +26,8 @@ final readonly class SendMessageHandler
 
     public function __invoke(SendMessageCommand $command): void
     {
-        $chat = $this->chatRepository->getById($command->chatId);
+        /** @var Chat $chat */
+        $chat = $this->chatRepository->find($command->chatId);
         $user = $chat->getUsers()->findFirst(fn (int $key, User $user) => $user->id->equals($command->userId));
 
         $message = Message::create(

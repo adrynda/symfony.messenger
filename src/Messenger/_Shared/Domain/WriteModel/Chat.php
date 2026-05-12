@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Messenger\_Shared\Domain\WriteModel;
 
+use App\Core\Domain\WriteModel\AbstractUuidEntity;
+use App\Core\Domain\WriteModel\User\User;
 use App\Messenger\_Shared\Domain\WriteModel\Trait\MessagesTrait;
-use App\Messenger\_Shared\Domain\WriteModel\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,11 +22,11 @@ class Chat extends AbstractUuidEntity
     private function __construct(
         UuidV1 $id,
 
-        #[ORM\ManyToMany(targetEntity: User::class, cascade: ['persist'])]
+        #[ORM\ManyToMany(targetEntity: User::class, fetch: 'EAGER', cascade: ['persist'])]
         #[ORM\JoinTable(name: 'chats_users')]
         private Collection $users,
 
-        #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'chat', cascade: ['persist', 'remove'], orphanRemoval: true)]
+        #[ORM\OneToMany(targetEntity: Message::class, fetch: 'EXTRA_LAZY', mappedBy: 'chat', cascade: ['persist', 'remove'], orphanRemoval: true)]
         private Collection $messages,
     ) {
         parent::__construct($id);
