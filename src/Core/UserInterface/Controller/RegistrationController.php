@@ -21,8 +21,13 @@ final class RegistrationController extends AbstractController
     #[Route('/registration', name: '_registration_view', methods: ['GET'])]
     public function view(): Response
     {
+        if (!empty($this->getUser())) {
+            return $this->redirectToRoute('core_home_view');
+        }
+
         return $this->render('core/registration.html.twig');
     }
+
     #[Route('/registration', name: '_registration_post', methods: ['POST'])]
     public function register(
         #[MapRequestPayload]

@@ -14,6 +14,10 @@ final class LoginController extends AbstractController
     #[Route('/login', name: '_login_view', methods: ['GET'])]
     public function view(): Response
     {
+        if (!empty($this->getUser())) {
+            return $this->redirectToRoute('core_home_view');
+        }
+
         return $this->render('core/login.html.twig');
     }
 
