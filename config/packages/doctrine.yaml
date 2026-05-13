@@ -1,5 +1,5 @@
 imports:
-    - { resource: '../../src/Messenger/Mercure/config/doctrine.yaml' }
+    - { resource: '../../src/Chat/config/doctrine.yaml' }
 
 doctrine:
     dbal:
@@ -27,11 +27,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Core/Domain/WriteModel'
                 prefix: 'App\Core\Domain\WriteModel'
                 alias: Core
-            Messenger:
-                type: attribute
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Messenger/_Shared/Domain/WriteModel'
-                prefix: 'App\Messenger\_Shared\Domain\WriteModel'
+#            Chat:
+#                type: attribute
+#                is_bundle: false
+#                dir: '%kernel.project_dir%/src/Chat/_Shared/Domain/WriteModel'
+#                prefix: 'App\Chat\_Shared\Domain\WriteModel'
         controller_resolver:
             auto_mapping: false
 

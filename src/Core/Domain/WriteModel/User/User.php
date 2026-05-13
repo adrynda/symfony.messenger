@@ -6,9 +6,9 @@ namespace App\Core\Domain\WriteModel\User;
 
 use App\Core\Domain\DTO\RegistrationDTO;
 use App\Core\Domain\WriteModel\AbstractUuidEntity;
-use App\Messenger\_Shared\Domain\WriteModel\Chat;
-use App\Messenger\_Shared\Domain\WriteModel\Message;
-use App\Messenger\_Shared\Domain\WriteModel\Trait\MessagesTrait;
+use App\Chat\_Shared\Domain\WriteModel\Chat;
+use App\Chat\_Shared\Domain\WriteModel\Message;
+use App\Chat\_Shared\Domain\WriteModel\Trait\MessagesTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

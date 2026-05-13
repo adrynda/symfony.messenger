@@ -1,0 +1,30 @@
+{% extends "core/template.html.twig" %}
+
+{% block title %}
+    Chat - Mercure
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Users</th>
+                <th scope="col">
+                    <a class="btn btn-success" href="{{ url('chat_mercure_create_view') }}">Add</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chat in chats %}
+                <tr>
+                    <th scope="row">{{ chat.id }}</th>
+                    <td>{{ chat.users|join(', ') }}</td>
+                    <td>
+                        <a></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -12,9 +12,43 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
         {% endblock %}
     </head>
-    <body>
-        {% block header %}{% endblock %}
-        {% block body %}{% endblock %}
-        {% block footer %}{% endblock %}
+    <body class="d-flex flex-column min-vh-100">
+        {% block header %}
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="container-fluid flex-column">
+                    <h1 class="text-white text-center w-100 mb-1">Portfolio</h1>
+                    {% if app.user !== null %}
+                        <div class="d-flex w-100">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ url('core_home_view') }}">Home</a>
+                                </li>
+                                <li class="nav-item nav-dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Messenger</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ url('chat_mercure_list_load') }}">Chat</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('core_logout') }}">Wyloguj</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </nav>
+        {% endblock %}
+
+        <main class="flex-grow-1 d-flex justify-content-center">
+            {% block body %}{% endblock %}
+        </main>
+
+        {% block footer %}
+            <footer class="mt-5 p-4 bg-dark text-white text-center">
+                <p>Footer</p>
+            </footer>
+        {% endblock %}
     </body>
 </html>

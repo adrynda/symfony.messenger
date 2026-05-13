@@ -1,6 +1,6 @@
 imports:
     - { resource: '../../src/Core/Infrastructure/config/messenger.yaml' }
-    - { resource: '../../src/Messenger/Mercure/config/messenger.yaml' }
+    - { resource: '../../src/Chat/config/messenger.yaml' }
 
 framework:
     messenger:
@@ -26,5 +26,5 @@ framework:
 #        messenger:
 #            transports:
 #                # replace with your transport name here (e.g., my_transport: 'in-memory://')
-#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                # For more User testing tools, see https://github.com/zenstruck/messenger-test
 #                async: 'in-memory://'

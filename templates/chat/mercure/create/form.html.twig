@@ -1,0 +1,27 @@
+{% extends "core/template.html.twig" %}
+
+{% block title %}
+    Chat - Mercure
+{% endblock %}
+
+{% block body %}
+    <form method="post" class="d-flex justify-content-center align-items-center vh-100 bg-light">
+        <div class="card shadow-sm" style="/*width: 100%; max-width: 400px;*/">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <label for="users" class="form-label">Użytkownicy</label>
+                    <select multiple class="form-control" name="users" id="users">
+                        {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <input type="submit" class="btn btn-primary w-100" value="Stwóz" />
+
+                <input type="hidden" name="_csrf_token" id="_csrf_token" value="{{ csrf_token('chat_mercure_create') }}">
+
+            </div>
+        </div>
+    </form>
+{% endblock %}

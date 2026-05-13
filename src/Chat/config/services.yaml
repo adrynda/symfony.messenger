@@ -1,0 +1,2 @@
+imports:
+  - { resource: '../Mercure/Infrastructure/config/services.yaml' }
