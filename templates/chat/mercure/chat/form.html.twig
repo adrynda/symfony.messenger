@@ -10,7 +10,7 @@
             <div class="card-body p-4">
                 <div class="mb-3">
                     <label for="users" class="form-label">Użytkownicy</label>
-                    <select multiple class="form-control" name="users" id="users">
+                    <select multiple class="form-control" name="users[]" id="users">
                         {% for user in users %}
                             <option value="{{ user.id }}">{{ user.username }}</option>
                         {% endfor %}
@@ -19,8 +19,7 @@
 
                 <input type="submit" class="btn btn-primary w-100" value="Stwóz" />
 
-                <input type="hidden" name="_csrf_token" id="_csrf_token" value="{{ csrf_token('chat_mercure_create') }}">
-
+                <input type="hidden" name="_csrf_token" id="_csrf_token" value="{{ csrf_token(csrfTokenKey) }}">
             </div>
         </div>
     </form>

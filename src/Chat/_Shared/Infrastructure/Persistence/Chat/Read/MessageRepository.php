@@ -30,7 +30,7 @@ final class MessageRepository extends ServiceEntityRepository implements Message
         $qb = $this->createQueryBuilder(self::ALIAS);
 
         $qb->select(self::ALIAS)
-            ->join('m.mercure', 'c')
+            ->join(self::ALIAS . '.chat', 'c')
             ->where($qb->expr()->eq('c.id', ':chatId'))
             ->setParameter('chatId', $chatId, 'uuid')
             ->orderBy(self::ALIAS . '.sentAt', 'DESC')
