@@ -22,7 +22,7 @@ security:
             custom_authenticator: App\Core\Infrastructure\Security\CoreUserAuthenticator
             logout:
                 path: core_logout
-                target: core_login_view
+                target: core_login
 
             remember_me:
                 secret: '%kernel.secret%'

@@ -1,0 +1,13 @@
+core:
+    form:
+        registration:
+            username: 'Nazwa użytkownika'
+            email: 'Adres e-mail'
+            password: 'Hasło'
+            password.repeat: 'Powtórz hasło'
+            password.mismatch: 'Hasła nie są zgodne'
+            submit: 'Zarejestruj się'
+            title: 'Zarejestruj się'
+            got:
+                account: 'Masz już konto?'
+            login: 'Zaloguj się'

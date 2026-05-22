@@ -4,26 +4,25 @@ declare(strict_types=1);
 
 namespace App\Core\UserInterface\Controller;
 
+use App\Core\UserInterface\Form\LoginFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/core', name: 'core')]
+#[Route('/core/login', name: 'core_login')]
 final class LoginController extends AbstractController
 {
-    #[Route('/login', name: '_login_view', methods: ['GET'])]
-    public function view(): Response
+    #[Route(name: '', methods: ['GET', 'POST'])]
+    public function login(Request $request): Response
     {
         if (!empty($this->getUser())) {
             return $this->redirectToRoute('core_home_view');
         }
 
-        return $this->render('core/login.html.twig');
-    }
+        $form = $this->createForm(LoginFormType::class);
+        $form->handleRequest($request);
 
-    #[Route('/login', name: '_login_login', methods: ['POST'])]
-    public function login(): Response
-    {
-        throw new \LogicException('Handled by security.');
+        return $this->render('core/login.html.twig', ['form' => $form]);
     }
 }

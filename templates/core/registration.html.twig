@@ -1,55 +1,23 @@
 {% extends "core/template.html.twig" %}
 
 {% block title %}
-    Rejestracja
+    {{ 'site.title.registration'|trans }}
 {% endblock %}
 
 {% block body %}
-    <form method="post" class="d-flex justify-content-center align-items-center vh-100 bg-light">
-        <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
-            <div class="card-body p-4">
-                {% for message in app.flashes('core.registration.register.error') %}
-                    <div class="alert alert-danger">{{ message }}</div>
-                {% endfor %}
+    {% set transKey = 'core.form.registration.' %}
+    <div class="flex items-center justify-center min-h-screen bg-gray-50">
+        <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 p-8">
 
-                <h4 class="mb-1">Zarejestruj się</h4>
-                <p class="text-muted small mb-4">Dołącz do nas — wprowadź swoje dane.</p>
+            <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ transKey ~ 'title'|trans }}</h4>
 
-                <div class="mb-3">
-                    <label for="username" class="form-label">Nazwa użytkownika</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Jan Kowalski">
-                </div>
+            {{ form(form) }}
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Adres e-mail</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="jan.kowalski@example.com">
-                </div>
+            <p class="mt-4 text-center text-sm text-gray-500">
+                {{ transKey ~ 'got.account' }}
+                <a href="{{ path('core_login_view') }}" class="text-blue-600 hover:underline">{{ transKey ~ 'login' }}</a>
+            </p>
 
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <label for="password" class="form-label mb-0">Hasło</label>
-                    </div>
-                    <div class="input-group mt-1">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="••••••••">
-                        <button class="btn btn-outline-secondary" type="button" id="togglePwd">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" id="eyeIcon">
-                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="repeatPassword" class="form-label">Powtórz hasło</label>
-                    <input type="password" class="form-control" name="repeatPassword" id="repeatPassword" placeholder="••••••••">
-                </div>
-
-                <input type="submit" class="btn btn-primary w-100" id="registerBtn" value="Zarejestruj się" />
-
-                <input type="hidden" name="_csrf_token" id="_csrf_token" value="{{ csrf_token('register_token') }}">
-
-            </div>
         </div>
-    </form>
+    </div>
 {% endblock %}

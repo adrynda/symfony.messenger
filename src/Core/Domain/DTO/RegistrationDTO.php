@@ -2,30 +2,12 @@
 
 namespace App\Core\Domain\DTO;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
-readonly class RegistrationDTO
+class RegistrationDTO
 {
     public function __construct(
-        #[Assert\NotBlank]
-        public string $username,
-        #[
-            Assert\NotBlank,
-            Assert\Email,
-        ]
-        public string $email,
-        #[Assert\NotBlank]
-        public string $password,
-        #[Assert\NotBlank]
-        public string $repeatPassword,
-
-        public ?string $_csrfToken = null,
+        public ?string $username = null,
+        public ?string $email = null,
+        public ?string $password = null,
     ) {
-    }
-
-    #[Assert\IsTrue(message: 'Passwords do not match!')]
-    public function isPasswordMatching(): bool
-    {
-        return $this->password === $this->repeatPassword;
     }
 }

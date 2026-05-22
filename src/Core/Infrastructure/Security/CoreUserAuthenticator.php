@@ -20,7 +20,7 @@ class CoreUserAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'core_login_view';
+    public const LOGIN_ROUTE = 'core_login';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -28,15 +28,16 @@ class CoreUserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->getPayload()->getString('email');
+        $data = $request->request->all('login_form');
+        $email = $data['email'] ?? '';
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($request->getPayload()->getString('password')),
+            new PasswordCredentials($data['password'] ?? ''),
             [
-                new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),
+                new CsrfTokenBadge('authenticate', $data['_token'] ?? ''),
                 new RememberMeBadge(),
             ]
         );
