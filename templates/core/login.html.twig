@@ -1,21 +1,21 @@
 {% extends "core/template.html.twig" %}
 
 {% block title %}
-    {{ 'site.title.login'|trans }}
+    {{ 'site.title.core.login'|trans }}
 {% endblock %}
 
 {% block body %}
     {% set transKey = 'core.form.login.' %}
-    <div class="flex items-center justify-center min-h-screen bg-gray-50">
+    <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 p-8">
 
-            <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ transKey ~ 'title'|trans }}</h4>
+            <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ (transKey ~ 'title')|trans }}</h4>
 
             {{ form(form) }}
 
             <p class="mt-4 text-center text-sm text-gray-500">
-                {{ transKey ~ 'no.account' }}
-                <a href="{{ path('core_registration') }}" class="text-blue-600 hover:underline">{{ transKey ~ 'login' }}</a>
+                {{ (transKey ~ 'no.account')|trans }}
+                <a href="{{ path('core_registration') }}" class="text-blue-600 hover:underline">{{ (transKey ~ 'register')|trans }}</a>
             </p>
 
         </div>

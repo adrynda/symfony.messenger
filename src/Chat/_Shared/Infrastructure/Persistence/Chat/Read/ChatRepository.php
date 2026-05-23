@@ -25,7 +25,7 @@ final class ChatRepository extends ServiceEntityRepository implements ChatReposi
         $qb = $this->createQueryBuilder(self::ALIAS);
         $qb->join('c.users', 'u')
             ->where('u.id = :userId')
-            ->setParameter('userId', $userId)
+            ->setParameter('userId', $userId->toBinary())
         ;
 
         return $qb->getQuery()->getResult();

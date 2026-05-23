@@ -1,27 +1,25 @@
 {% extends "core/template.html.twig" %}
 
 {% block title %}
-    Chat - Mercure
+    {{ 'site.title.chat.list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <table class="table">
+    <table class="table-auto">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Users</th>
-                <th scope="col">
-                    <a class="btn btn-success" href="{{ url('chat_mercure_chat_create') }}">Create</a>
+                <th>{{ 'chat.list.users' }}</th>
+                <th>
+                    <a class="text-green-600 hover:underline" href="{{ url('chat_mercure_chat_create') }}">{{ 'chat.list.create' }}</a>
                 </th>
             </tr>
         </thead>
         <tbody>
             {% for chat in chats %}
                 <tr>
-                    <th scope="row">{{ chat.id }}</th>
-                    <td>{{ chat.users|join(', ') }}</td>
+                    <td>{{ chat.users|map(u => u.username)|join(', ') }}</td>
                     <td>
-                        <a>asd</a>
+                        <a class="text-green-600 hover:underline" href="{{ url('chat_mercure_chat_open', {id: chat.id}) }}">{{ 'chat.list.open' }}</a>
                     </td>
                 </tr>
             {% endfor %}

@@ -1,7 +1,7 @@
 {% extends "core/template.html.twig" %}
 
 {% block title %}
-    {{ 'site.title.registration'|trans }}
+    {{ 'site.title.core.registration'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -9,13 +9,13 @@
     <div class="flex items-center justify-center min-h-screen bg-gray-50">
         <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 p-8">
 
-            <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ transKey ~ 'title'|trans }}</h4>
+            <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ (transKey ~ 'title')|trans }}</h4>
 
             {{ form(form) }}
 
             <p class="mt-4 text-center text-sm text-gray-500">
-                {{ transKey ~ 'got.account' }}
-                <a href="{{ path('core_login_view') }}" class="text-blue-600 hover:underline">{{ transKey ~ 'login' }}</a>
+                {{ (transKey ~ 'got.account')|trans }}
+                <a href="{{ path('core_login') }}" class="text-blue-600 hover:underline">{{ (transKey ~ 'login')|trans }}</a>
             </p>
 
         </div>

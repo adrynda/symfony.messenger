@@ -4,54 +4,42 @@ declare(strict_types=1);
 
 namespace App\Chat\Mercure\UserInterface\Controller\Chat;
 
-use App\Chat\Mercure\Application\Query\GetUserFriendList\GetUserFriendListQuery;
 use App\Chat\Mercure\Application\Service\CreateChatDTO;
 use App\Chat\Mercure\Application\Service\CreateChatService;
 use App\Chat\Mercure\UserInterface\AbstractController;
+use App\Chat\Mercure\UserInterface\Form\CreateChatFormType;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/chat/mercure/chat', name: 'chat_mercure_chat')]
+#[Route('/chat/mercure/chat', name: 'chat_mercure_chat_create')]
 final class CreateChatController extends AbstractController
 {
     use HandleTrait;
 
     private MessageBusInterface $messageBus;
 
-    #[Route(name: '_form', methods: ['GET'])]
-    public function form(
-        #[Autowire(service: 'chat.mercure.query.bus')]
-        MessageBusInterface $queryBus,
-    ): Response {
-        $this->messageBus = $queryBus;
-        $users = $this->handle(new GetUserFriendListQuery($this->getUser()->id));
-
-        return $this->render('chat/mercure/chat/form.html.twig', [
-            'users' => $users,
-            'csrfTokenKey' => $this->getCsrfTokenKey(),
-        ]);
-    }
-
-    #[Route(name: '_create', methods: ['POST'])]
+    #[Route(name: '', methods: ['GET', 'POST'])]
     public function create(
-        #[MapRequestPayload]
-        CreateChatDTO $createChatDTO,
+        Request $request,
+        #[Autowire(service: 'core.registration.command.bus')]
+        MessageBusInterface $commandBus,
         CreateChatService $createChatService,
-    ): RedirectResponse {
-        $this->validCsrfToken();
+    ): Response {
+        $form = $this->createForm(CreateChatFormType::class, new CreateChatDTO, [
+            'current_user_id' => $this->getUser()->id,
+        ]);
+        $form->handleRequest($request);
 
-        $chat = $createChatService->createChat($createChatDTO, $this->getUser());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $chat = $createChatService->createChat($form->getData(), $this->getUser());
 
-        return $this->redirectToRoute('chat_mercure_chat_view', ['id' => $chat->id]);
-    }
+            return $this->redirectToRoute('chat_mercure_chat_view', ['id' => $chat->id]);
+        }
 
-    protected function getCsrfTokenKey(): string
-    {
-        return 'chat_mercure_chat_create';
+        return $this->render('chat/mercure/chat/form.html.twig', ['form' => $form]);
     }
 }

@@ -115,4 +115,9 @@ class User extends AbstractUuidEntity implements UserInterface, PasswordAuthenti
     {
         return $this->credentials->email;
     }
+
+    public function __toString(): string
+    {
+        return $this->username;
+    }
 }
