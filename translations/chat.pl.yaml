@@ -1,0 +1,9 @@
+chat:
+    list:
+        users: 'Użytkownicy'
+        create: 'Utwórz'
+        open: 'Otwórz'
+    form:
+        title: 'Czat'
+        users: 'Uczestnicy'
+        submit: 'Stwórz'

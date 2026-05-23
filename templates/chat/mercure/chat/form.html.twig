@@ -1,19 +1,18 @@
-{% extends "core/template.html.twig" %}
+{% extends "core/common/template.html.twig" %}
+{% trans_default_domain 'chat' %}
 
 {% block title %}
-    {{ 'site.title.chat.create'|trans }}
+    {{ 'site.title.chat.create'|trans({}, 'site') }}
 {% endblock %}
 
 {% block body %}
-    <div class="flex items-center justify-center min-h-screen bg-gray-50 py-12">
-        <div class="w-full max-w-md bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+    <div class="w-full max-w-md bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
 
-            <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">
-                {{ 'chat.form.chat.create.title'|trans }}
-            </h2>
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">
+            {{ 'chat.form.title'|trans }}
+        </h2>
 
-            {{ form(form) }}
+        {{ form(form) }}
 
-        </div>
     </div>
 {% endblock %}

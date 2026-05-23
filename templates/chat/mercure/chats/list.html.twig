@@ -1,16 +1,17 @@
-{% extends "core/template.html.twig" %}
+{% extends "core/common/template.html.twig" %}
+{% trans_default_domain 'chat' %}
 
 {% block title %}
-    {{ 'site.title.chat.list'|trans }}
+    {{ 'site.title.chat.list'|trans({}, 'site') }}
 {% endblock %}
 
 {% block body %}
     <table class="table-auto">
         <thead>
             <tr>
-                <th>{{ 'chat.list.users' }}</th>
+                <th>{{ 'chat.list.users'|trans }}</th>
                 <th>
-                    <a class="text-green-600 hover:underline" href="{{ url('chat_mercure_chat_create') }}">{{ 'chat.list.create' }}</a>
+                    <a class="text-green-600 hover:underline" href="{{ url('chat_mercure_chat_create') }}">{{ 'chat.list.create'|trans }}</a>
                 </th>
             </tr>
         </thead>
@@ -19,7 +20,7 @@
                 <tr>
                     <td>{{ chat.users|map(u => u.username)|join(', ') }}</td>
                     <td>
-                        <a class="text-green-600 hover:underline" href="{{ url('chat_mercure_chat_open', {id: chat.id}) }}">{{ 'chat.list.open' }}</a>
+                        <a class="text-green-600 hover:underline" href="{{ url('chat_mercure_chat_open', {id: chat.id}) }}">{{ 'chat.list.open'|trans }}</a>
                     </td>
                 </tr>
             {% endfor %}

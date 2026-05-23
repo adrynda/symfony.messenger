@@ -1,7 +1,7 @@
-{% extends "core/template.html.twig" %}
+{% extends "core/common/template.html.twig" %}
 
 {% block title %}
-    {{ 'site.title.core.home'|trans }}
+    {{ 'site.title.core.home'|trans({}, 'site') }}
 {% endblock %}
 
 {% block body %}

@@ -1,0 +1,10 @@
+site:
+    title:
+        main: 'Portfolio'
+        core:
+            registration: 'Rejestracja'
+            login: 'Logowanie'
+            home: 'Strona główna'
+        chat:
+            list: 'Lista czatów'
+            create: 'Zakładanie czatu'

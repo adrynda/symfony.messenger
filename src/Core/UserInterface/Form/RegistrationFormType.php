@@ -55,6 +55,7 @@ class RegistrationFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => RegistrationDTO::class,
             'csrf_protection' => true,
+            'translation_domain' => 'core',
         ]);
     }
 }

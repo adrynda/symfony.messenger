@@ -1,7 +1,8 @@
-{% extends "core/template.html.twig" %}
+{% extends "core/common/template.html.twig" %}
+{% trans_default_domain 'core' %}
 
 {% block title %}
-    {{ 'site.title.core.registration'|trans }}
+    {{ 'site.title.core.registration'|trans({}, 'site') }}
 {% endblock %}
 
 {% block body %}

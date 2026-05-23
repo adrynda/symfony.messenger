@@ -1,0 +1,7 @@
+menu:
+    core:
+        home: 'Strona główna'
+    messenger:
+        main: 'Komunikator'
+        chat: 'Czat'
+    logout: 'Wyloguj'
