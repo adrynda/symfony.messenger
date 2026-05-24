@@ -1,5 +1,5 @@
-{# chat/mercure/chat/open.html.twig #}
-{% extends "core/template.html.twig" %}
+{% extends "core/common/template.html.twig" %}
+{% trans_default_domain 'chat' %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -28,7 +28,7 @@
     </style>
 {% endblock %}
 
-{% block content %}
+{% block body %}
 {#    {{ parent() }}#}
 {#    <div class="row d-flex justify-content-center">#}
 {#        <div class="col-md-10 col-lg-8 col-xl-6">#}

@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CreateChatFormType extends AbstractType
+class CreateChatType extends AbstractType
 {
     private const TRANS_KEY = 'chat.form.';
 
@@ -42,7 +42,6 @@ class CreateChatFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => CreateChatDTO::class,
             'csrf_protection' => true,
-            'csrf_token_id' => 'authenticate',
             'current_user_id' => null,
             'translation_domain' => 'chat',
         ]);

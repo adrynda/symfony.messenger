@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\UserInterface\Controller;
 
-use App\Core\UserInterface\Form\LoginFormType;
+use App\Core\UserInterface\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ final class LoginController extends AbstractController
             return $this->redirectToRoute('core_home_view');
         }
 
-        $form = $this->createForm(LoginFormType::class);
+        $form = $this->createForm(LoginType::class);
         $form->handleRequest($request);
 
         return $this->render('core/login.html.twig', ['form' => $form]);

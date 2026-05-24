@@ -33,9 +33,9 @@ final class OpenChatController extends AbstractController
         $chatView = ChatView::fromEntity($chat);
         $messages = $this->handle(new GetChatMessagesQuery($chat->id));
         $chatView = $chatView->withMessages($messages);
-        dd($chatView);
+//        dd($chatView);
 
-        UserView::fromEntity($this->getUser());
+//        UserView::fromEntity($this->getUser());
         return $this->render('chat/mercure/chat/open.html.twig', [
             'chat' => $chatView->withMessages($messages),
 //            'csrfTokenKey' => $this->getCsrfTokenKey(),

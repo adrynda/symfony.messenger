@@ -7,7 +7,7 @@ namespace App\Chat\Mercure\UserInterface\Controller\Chat;
 use App\Chat\Mercure\Application\Service\CreateChatDTO;
 use App\Chat\Mercure\Application\Service\CreateChatService;
 use App\Chat\Mercure\UserInterface\AbstractController;
-use App\Chat\Mercure\UserInterface\Form\CreateChatFormType;
+use App\Chat\Mercure\UserInterface\Form\CreateChatType;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +29,7 @@ final class CreateChatController extends AbstractController
         MessageBusInterface $commandBus,
         CreateChatService $createChatService,
     ): Response {
-        $form = $this->createForm(CreateChatFormType::class, new CreateChatDTO, [
+        $form = $this->createForm(CreateChatType::class, new CreateChatDTO, [
             'current_user_id' => $this->getUser()->id,
         ]);
         $form->handleRequest($request);

@@ -6,7 +6,7 @@ namespace App\Core\UserInterface\Controller;
 
 use App\Core\Application\Command\RegisterUser\RegisterUserCommand;
 use App\Core\Domain\DTO\RegistrationDTO;
-use App\Core\UserInterface\Form\RegistrationFormType;
+use App\Core\UserInterface\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +28,7 @@ final class RegistrationController extends AbstractController
             return $this->redirectToRoute('core_home_view');
         }
 
-        $form = $this->createForm(RegistrationFormType::class, new RegistrationDTO);
+        $form = $this->createForm(RegistrationType::class, new RegistrationDTO);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

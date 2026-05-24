@@ -15,7 +15,7 @@ use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/chat/mercure/chat/{id}', name: 'chat_mercure_chat')]
+#[Route('/chat/mercure/chat/{id}/asd', name: 'chat_mercure_chat')]
 final class ChatController extends AbstractController
 {
     use HandleTrait;
