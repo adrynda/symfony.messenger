@@ -1,3 +1,4 @@
+{# core/registration.html.twig #}
 {% extends "core/common/template.html.twig" %}
 {% trans_default_domain 'core' %}
 
@@ -12,7 +13,11 @@
 
             <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ (transKey ~ 'title')|trans }}</h4>
 
-            {{ form(form) }}
+{#            {{ form(form) }}#}
+{#            {% include 'core/registration_form.html.twig' %}#}
+            <turbo-frame id="registration-form">
+                {% include 'core/registration_form.html.twig' %}
+            </turbo-frame>
 
             <p class="mt-4 text-center text-sm text-gray-500">
                 {{ (transKey ~ 'got.account')|trans }}

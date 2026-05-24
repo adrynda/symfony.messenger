@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\UX\Turbo\TurboBundle;
 
 
 #[Route('/core/registration', name: 'core_registration')]
@@ -31,10 +32,17 @@ final class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationType::class, new RegistrationDTO);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $commandBus->dispatch(new RegisterUserCommand($form->getData()));
-            $this->addFlash('core.registration.form.success', 'core.registration.form.success.notify.email');
-            return $this->redirectToRoute('core_login_view');
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $commandBus->dispatch(new RegisterUserCommand($form->getData()));
+                $this->addFlash('core.registration.form.success', 'core.registration.form.success.notify.email');
+                return $this->redirectToRoute('core_login');
+            }
+
+            if ($request->getPreferredFormat() === TurboBundle::STREAM_FORMAT) {
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+                return $this->render('core/registration_turbo.html.twig', ['form' => $form]);
+            }
         }
 
         return $this->render('core/registration.html.twig', ['form' => $form]);

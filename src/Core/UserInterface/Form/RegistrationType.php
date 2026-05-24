@@ -11,9 +11,14 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationType extends AbstractType
 {
+    public function __construct(
+        private readonly TranslatorInterface $translator
+    ) {}
+
     private const TRANS_KEY = 'core.form.registration.';
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -35,10 +40,14 @@ class RegistrationType extends AbstractType
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => self::TRANS_KEY . 'password.mismatch',
+                'invalid_message' => $this->translator->trans(
+                    self::TRANS_KEY . 'password.mismatch',
+                    [],
+                    'core'
+                ),
                 'required' => true,
                 'first_options' => [
-                    'label' => self::TRANS_KEY . 'password',
+                    'label' => self::TRANS_KEY . 'password.main',
                 ],
                 'second_options' => [
                     'label' => self::TRANS_KEY . 'password.repeat',

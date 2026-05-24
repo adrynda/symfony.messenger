@@ -6,9 +6,10 @@ core:
                 email: 'np. jan.kowalski@gmail.com'
             username: 'Nazwa użytkownika'
             email: 'Adres e-mail'
-            password: 'Hasło'
-            password.repeat: 'Powtórz hasło'
-            password.mismatch: 'Hasła nie są zgodne'
+            password:
+                main: 'Hasło'
+                repeat: 'Powtórz hasło'
+                mismatch: 'Hasła nie są zgodne'
             submit: 'Zarejestruj się'
             title: 'Zarejestruj się'
             got:
