@@ -13,8 +13,6 @@
 
             <h4 class="text-lg font-semibold text-gray-900 mb-1">{{ (transKey ~ 'title')|trans }}</h4>
 
-{#            {{ form(form) }}#}
-{#            {% include 'core/registration_form.html.twig' %}#}
             <turbo-frame id="registration-form">
                 {% include 'core/registration_form.html.twig' %}
             </turbo-frame>

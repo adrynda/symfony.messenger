@@ -84,7 +84,7 @@ class ChatFixture extends AbstractFixture
         $message = $this->createEntityWithDefaultId(Message::class, Uuid::v1());
 
         $this->setReflectedPropertyValue($message, 'user', $user);
-        $this->setReflectedPropertyValue($message, 'mercure', $chat);
+        $this->setReflectedPropertyValue($message, 'chat', $chat);
         $this->setReflectedPropertyValue($message, 'content', $content);
         $this->setReflectedPropertyValue($message, 'sentAt', $sentAt);
 

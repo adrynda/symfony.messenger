@@ -8,3 +8,10 @@ import './stimulus_bootstrap.js';
 import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+
+
+import * as Turbo from '@hotwired/turbo';
+
+Turbo.StreamActions.redirect = function() {
+    Turbo.visit(this.target);
+};

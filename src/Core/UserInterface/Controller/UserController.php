@@ -5,16 +5,18 @@ declare(strict_types=1);
 namespace App\Core\UserInterface\Controller;
 
 use App\Chat\_Shared\Domain\ReadModel\UserView;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Core\Domain\WriteModel\User\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/core/user', name: 'core_user_')]
-final class UserController extends AbstractController
+final class UserController extends AbstractCoreController
 {
     #[Route('/me', name: 'current', methods: ['GET'])]
     public function me(): JsonResponse
     {
-        return $this->json(UserView::fromEntity($this->getUser()));
+        /** @var ?User $currentUser */
+        $currentUser = $this->getUser();
+        return $this->json(UserView::fromEntity($currentUser));
     }
 }
