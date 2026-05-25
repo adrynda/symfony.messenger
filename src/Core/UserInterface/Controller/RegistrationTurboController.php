@@ -6,6 +6,8 @@ namespace App\Core\UserInterface\Controller;
 
 use App\Core\Application\Command\RegisterUser\RegisterUserCommand;
 use App\Core\Domain\DTO\RegistrationDTO;
+use App\Core\UserInterface\DTO\TurboFrameDTO;
+use App\Core\UserInterface\DTO\TurboStreamDTO;
 use App\Core\UserInterface\Form\RegistrationType;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,10 +37,26 @@ final class RegistrationTurboController extends AbstractTurboController
             }
 
             if ($this->isTurboStreamFormat()) {
-                return $this->renderTurboStream('core/registration_turbo.html.twig', ['form' => $form]);
+                return $this->renderTurboStream(
+                    new TurboStreamDTO(
+                        action: 'update',
+                        target: 'registration-form',
+                        template: 'core/common/form.html.twig',
+                    ),
+                    ['form' => $form],
+                );
             }
         }
 
-        return $this->render('core/registration.html.twig', ['form' => $form]);
+        return $this->render(
+            'core/registration.html.twig',
+            [
+                'form' => $form,
+                'turbo' => new TurboFrameDTO(
+                    id: 'registration-form',
+                    template: 'core/common/form.html.twig',
+                ),
+            ],
+        );
     }
 }
