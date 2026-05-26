@@ -5,6 +5,7 @@ namespace App\Chat\Mercure\UserInterface\Form;
 use App\Chat\Mercure\Application\Service\CreateChatDTO;
 use App\Core\Domain\WriteModel\User\User;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -23,7 +24,7 @@ class CreateChatType extends AbstractType
                     $qb = $er->createQueryBuilder('u');
                     return $qb
                         ->where($qb->expr()->neq('u.id', ':currentUserId'))
-                        ->setParameter('currentUserId', $options['current_user_id'])
+                        ->setParameter('currentUserId', $options['current_user_id'], UuidType::NAME)
                     ;
                 },
                 'class' => User::class,
