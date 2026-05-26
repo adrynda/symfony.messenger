@@ -19,7 +19,7 @@ security:
         main:
             lazy: true
             provider: core_user_provider
-            custom_authenticator: App\Core\Infrastructure\Security\CoreUserAuthenticator
+            custom_authenticator: App\Core\Infrastructure\Security\CoreUserTurboAuthenticator
             logout:
                 path: core_logout
                 target: core_login
