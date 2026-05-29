@@ -33,7 +33,8 @@
         "symfony/translation": "^7.4",
         "symfony/twig-bundle": "7.4.*",
         "symfony/uid": "7.4.*",
-        "symfony/ux-turbo": "^2.35",
+        "symfony/ux-live-component": "^2.36",
+        "symfony/ux-turbo": "^2.36",
         "symfony/validator": "7.4.*",
         "symfony/yaml": "7.4.*",
         "symfonycasts/tailwind-bundle": "^0.12.0"

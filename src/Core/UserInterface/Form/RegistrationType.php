@@ -5,7 +5,6 @@ namespace App\Core\UserInterface\Form;
 use App\Core\Domain\DTO\RegistrationDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -15,11 +14,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationType extends AbstractType
 {
-    public function __construct(
-        private readonly TranslatorInterface $translator
-    ) {}
+    protected const TRANS_KEY = 'core.form.registration.';
 
-    private const TRANS_KEY = 'core.form.registration.';
+    public function __construct(
+        protected readonly TranslatorInterface $translator
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -46,15 +45,15 @@ class RegistrationType extends AbstractType
                     'core'
                 ),
                 'required' => true,
+                'options' => [
+                    'always_empty' => false,
+                ],
                 'first_options' => [
                     'label' => self::TRANS_KEY . 'password.main',
                 ],
                 'second_options' => [
                     'label' => self::TRANS_KEY . 'password.repeat',
                 ],
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => self::TRANS_KEY . 'submit',
             ])
         ;
     }

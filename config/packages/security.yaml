@@ -40,6 +40,7 @@ security:
 
     # Note: Only the *first* matching rule is applied
     access_control:
+         - { path: ^/_components/, roles: PUBLIC_ACCESS }
          - { path: ^/core/registration, roles: PUBLIC_ACCESS }
          - { path: ^/core/login, roles: PUBLIC_ACCESS }
          - { path: ^/core/logout, roles: PUBLIC_ACCESS }
