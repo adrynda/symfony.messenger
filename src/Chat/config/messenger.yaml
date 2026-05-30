@@ -1,2 +1,0 @@
-imports:
-  - { resource: '../Mercure/Infrastructure/config/messenger.yaml' }

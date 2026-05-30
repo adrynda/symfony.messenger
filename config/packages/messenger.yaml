@@ -1,6 +1,6 @@
 imports:
     - { resource: '../../src/Core/Infrastructure/config/messenger.yaml' }
-    - { resource: '../../src/Chat/config/messenger.yaml' }
+    - { resource: '../../src/Chat/Infrastructure/config/messenger.yaml' }
 
 framework:
     messenger:

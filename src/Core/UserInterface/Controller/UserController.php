@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\UserInterface\Controller;
 
-use App\Chat\_Shared\Domain\ReadModel\UserView;
+use App\Chat\Domain\ReadModel\UserView;
 use App\Core\Domain\WriteModel\User\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
