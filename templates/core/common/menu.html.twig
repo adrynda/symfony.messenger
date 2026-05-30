@@ -24,8 +24,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                                 </svg>
                             </button>
-                            <ul class="absolute left-0 top-full mt-1 w-40 bg-gray-800 border border-gray-700 rounded shadow-lg
-                                               opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                            <ul class="absolute left-0 top-full mt-1 w-40 bg-gray-800 border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
                                 <li>
                                     <a href="{{ url('chat_mercure_chats_list') }}"
                                        class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
@@ -37,11 +36,21 @@
                     </ul>
 
                     <ul class="flex items-center ml-auto">
-                        <li>
-                            <a href="{{ url('core_logout') }}"
-                               class="px-3 py-1.5 rounded text-sm text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
-                                {{ 'menu.logout'|trans }}
-                            </a>
+                        <li class="relative group">
+                            <button class="flex items-center gap-1 px-3 py-1.5 rounded text-sm text-gray-300 hover:text-white hover:bg-gray-700 transition-colors cursor-pointer">
+                                {{ app.user.useridentifier }}
+                                <svg class="w-3.5 h-3.5 mt-px" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <ul class="absolute left-0 top-full mt-1 w-40 bg-gray-800 border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                                <li>
+                                    <a href="{{ url('core_logout') }}"
+                                       class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
+                                        {{ 'menu.logout'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
