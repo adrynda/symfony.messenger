@@ -14,7 +14,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent('registrationForm', template: 'core/components/registration_form.html.twig')]
+#[AsLiveComponent('registrationForm', template: 'core/components/_form.html.twig')]
 class RegistrationFormComponent extends AbstractController
 {
     use DefaultActionTrait;
