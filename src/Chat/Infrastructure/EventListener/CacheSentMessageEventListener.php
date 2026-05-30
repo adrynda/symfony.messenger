@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Chat\Infrastructure\EventListener;
 
-use App\Chat\Domain\WriteModel\Chat;
+use App\Chat\Domain\Model\Chat;
 use App\Chat\Domain\Event\SentMessageEvent;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Uid\UuidV1;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Chat\Domain\ReadModel;
+namespace App\Chat\Domain\ViewModel;
 
-use App\Chat\Domain\WriteModel\Chat;
+use App\Chat\Domain\Model\Chat;
 use Symfony\Component\Uid\UuidV1;
 
 final readonly class ChatView

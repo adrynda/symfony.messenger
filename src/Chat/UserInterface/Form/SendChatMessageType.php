@@ -3,7 +3,7 @@
 namespace App\Chat\UserInterface\Form;
 
 use App\Chat\Application\Service\CreateChatDTO;
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\User\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

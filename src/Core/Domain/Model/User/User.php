@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Domain\WriteModel\User;
+namespace App\Core\Domain\Model\User;
 
 use App\Core\Domain\DTO\RegistrationDTO;
-use App\Core\Domain\WriteModel\AbstractUuidEntity;
-use App\Chat\Domain\WriteModel\Chat;
-use App\Chat\Domain\WriteModel\Message;
-use App\Chat\Domain\WriteModel\Trait\MessagesTrait;
+use App\Core\Domain\Model\AbstractUuidEntity;
+use App\Chat\Domain\Model\Chat;
+use App\Chat\Domain\Model\Message;
+use App\Chat\Domain\Model\Trait\MessagesTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

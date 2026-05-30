@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Chat\Application\Command\SendMessage;
 
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\User\User;
 use App\Chat\Domain\Repository\Chat\Write\ChatRepositoryInterface;
-use App\Chat\Domain\WriteModel\Chat;
-use App\Chat\Domain\WriteModel\Message;
+use App\Chat\Domain\Model\Chat;
+use App\Chat\Domain\Model\Message;
 use App\Chat\Domain\DTO\PublishMessageDTO;
 use App\Chat\Domain\Event\SentMessageEvent;
 use App\Chat\Domain\Service\PublisherInterface;

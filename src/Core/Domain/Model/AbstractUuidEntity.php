@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Domain\WriteModel;
+namespace App\Core\Domain\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Chat\Application\Query\GetUserFriendList;
 
-use App\Chat\Domain\ReadModel\UserView;
+use App\Chat\Domain\ViewModel\UserView;
 use App\Core\Domain\Repository\Read\UserRepositoryInterface;
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\User\User;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]

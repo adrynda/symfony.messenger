@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Domain\WriteModel\User;
+namespace App\Core\Domain\Model\User;
 
 use Doctrine\ORM\Mapping as ORM;
 

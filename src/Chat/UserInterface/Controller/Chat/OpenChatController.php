@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Chat\UserInterface\Controller\Chat;
 
-use App\Chat\Domain\ReadModel\ChatView;
-use App\Chat\Domain\ReadModel\UserView;
-use App\Chat\Domain\WriteModel\Chat;
+use App\Chat\Domain\ViewModel\ChatView;
+use App\Chat\Domain\ViewModel\UserView;
+use App\Chat\Domain\Model\Chat;
 use App\Chat\Application\Query\GetChatMessages\GetChatMessagesQuery;
 use App\Chat\UserInterface\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;

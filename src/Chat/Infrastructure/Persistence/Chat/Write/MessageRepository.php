@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Chat\Infrastructure\Persistence\Chat\Write;
 
 use App\Chat\Domain\Repository\Chat\Write\MessageRepositoryInterface;
-use App\Chat\Domain\WriteModel\Message;
+use App\Chat\Domain\Model\Message;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

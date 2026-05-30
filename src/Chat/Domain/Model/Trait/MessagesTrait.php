@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Chat\Domain\WriteModel\Trait;
+namespace App\Chat\Domain\Model\Trait;
 
-use App\Chat\Domain\WriteModel\Message;
+use App\Chat\Domain\Model\Message;
 use Doctrine\Common\Collections\Collection;
 
 trait MessagesTrait

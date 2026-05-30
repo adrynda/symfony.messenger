@@ -2,8 +2,8 @@
 
 namespace App\Core\Infrastructure\TwigExtension;
 
-use App\Chat\Domain\ReadModel\UserView;
-use App\Core\Domain\WriteModel\User\User;
+use App\Chat\Domain\ViewModel\UserView;
+use App\Core\Domain\Model\User\User;
 use Symfony\Bundle\SecurityBundle\Security;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

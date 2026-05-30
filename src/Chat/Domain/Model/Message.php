@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Chat\Domain\WriteModel;
+namespace App\Chat\Domain\Model;
 
-use App\Core\Domain\WriteModel\AbstractUuidEntity;
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\AbstractUuidEntity;
+use App\Core\Domain\Model\User\User;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;

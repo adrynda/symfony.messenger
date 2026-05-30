@@ -3,7 +3,7 @@
 namespace App\Core\Application\Command\RegisterUser;
 
 use App\Core\Domain\DTO\RegistrationDTO;
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\User\User;
 use App\Core\Domain\Repository\Write\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;

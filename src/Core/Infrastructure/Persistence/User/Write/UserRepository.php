@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Infrastructure\Persistence\User\Write;
 
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\User\User;
 use App\Core\Domain\Repository\Write\UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

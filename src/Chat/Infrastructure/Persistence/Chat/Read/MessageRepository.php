@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Chat\Infrastructure\Persistence\Chat\Read;
 
 use App\Chat\Domain\Repository\Chat\Read\MessageRepositoryInterface;
-use App\Chat\Domain\WriteModel\Message;
+use App\Chat\Domain\Model\Message;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\UuidV1;

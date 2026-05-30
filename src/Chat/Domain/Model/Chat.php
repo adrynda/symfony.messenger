@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Chat\Domain\WriteModel;
+namespace App\Chat\Domain\Model;
 
-use App\Core\Domain\WriteModel\AbstractUuidEntity;
-use App\Core\Domain\WriteModel\User\User;
-use App\Chat\Domain\WriteModel\Trait\MessagesTrait;
+use App\Core\Domain\Model\AbstractUuidEntity;
+use App\Core\Domain\Model\User\User;
+use App\Chat\Domain\Model\Trait\MessagesTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,10 +34,6 @@ class Chat extends AbstractUuidEntity
         foreach ($users as $user) {
             $user->addChat($this);
         }
-
-//        foreach ($messages as $message) {
-//            $message->addChat($this);
-//        }
     }
 
     /**

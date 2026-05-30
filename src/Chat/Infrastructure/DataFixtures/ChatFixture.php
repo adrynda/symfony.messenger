@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Chat\Infrastructure\DataFixtures;
 
-use App\Core\Domain\WriteModel\User\User;
-use App\Chat\Domain\WriteModel\Chat;
-use App\Chat\Domain\WriteModel\Message;
+use App\Core\Domain\Model\User\User;
+use App\Chat\Domain\Model\Chat;
+use App\Chat\Domain\Model\Message;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Persistence\ObjectManager;

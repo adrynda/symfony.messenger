@@ -4,7 +4,7 @@ namespace App\Chat\UserInterface\TwigComponent\CreateChat;
 
 use App\Chat\Application\Service\CreateChatDTO;
 use App\Chat\UserInterface\Form\CreateChatType;
-use App\Core\Domain\WriteModel\User\User;
+use App\Core\Domain\Model\User\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Form\AbstractType;

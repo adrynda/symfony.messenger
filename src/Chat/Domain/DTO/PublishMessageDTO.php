@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Chat\Domain\DTO;
 
-use App\Chat\Domain\ReadModel\MessageView;
-use App\Chat\Domain\WriteModel\Message;
+use App\Chat\Domain\ViewModel\MessageView;
+use App\Chat\Domain\Model\Message;
 
 final readonly class PublishMessageDTO extends PublishDTO
 {

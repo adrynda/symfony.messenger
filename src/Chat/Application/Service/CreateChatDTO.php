@@ -2,13 +2,13 @@
 
 namespace App\Chat\Application\Service;
 
+use App\Core\Domain\Model\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Uid\UuidV1;
 
 class CreateChatDTO
 {
     public function __construct(
-        /** @var UuidV1[] $users */
+        /** @var User[] $users */
         public ?ArrayCollection $users = null,
     ) {}
 }

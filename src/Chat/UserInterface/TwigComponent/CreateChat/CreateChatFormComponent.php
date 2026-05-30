@@ -2,6 +2,7 @@
 
 namespace App\Chat\UserInterface\TwigComponent\CreateChat;
 
+use App\Chat\Application\Exception\ChatAlreadyExistsException;
 use App\Chat\Application\Service\CreateChatDTO;
 use App\Chat\Application\Service\CreateChatService;
 use App\Chat\UserInterface\Form\CreateChatType;
@@ -42,7 +43,11 @@ class CreateChatFormComponent extends AbstractController
         /** @var CreateChatDTO $dto */
         $dto = $this->getForm()->getData();
 
-        $chat = $this->createChatService->createChat($dto, $this->getUser());
+        try {
+            $chat = $this->createChatService->createChat($dto, $this->getUser());
+        } catch (ChatAlreadyExistsException $e) {
+            return $this->redirectToRoute('chat_mercure_chat_view', ['id' => $e->chat->id]);
+        }
 
         $this->addFlash('chat.create.form.success', 'chat.create.form.success.notify');
 

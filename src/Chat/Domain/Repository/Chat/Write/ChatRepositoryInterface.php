@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Chat\Domain\Repository\Chat\Write;
 
-use App\Chat\Domain\WriteModel\Chat;
+use App\Chat\Domain\Model\Chat;
 
 interface ChatRepositoryInterface
 {

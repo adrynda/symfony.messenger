@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Chat\Infrastructure\DataFixtures;
 
-use App\Core\Domain\WriteModel\AbstractUuidEntity;
+use App\Core\Domain\Model\AbstractUuidEntity;
 use ReflectionClass;
 use Symfony\Component\Uid\UuidV1;
 

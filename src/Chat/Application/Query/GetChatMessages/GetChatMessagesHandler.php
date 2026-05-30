@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Chat\Application\Query\GetChatMessages;
 
-use App\Chat\Domain\ReadModel\MessageView;
+use App\Chat\Domain\ViewModel\MessageView;
 use App\Chat\Domain\Repository\Chat\Read\MessageRepositoryInterface;
-use App\Chat\Domain\WriteModel\Message;
+use App\Chat\Domain\Model\Message;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
