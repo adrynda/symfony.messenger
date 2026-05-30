@@ -24,8 +24,8 @@ doctrine:
             Core:
                 type: attribute
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Core/Domain/WriteModel'
-                prefix: 'App\Core\Domain\WriteModel'
+                dir: '%kernel.project_dir%/src/Core/Domain/Model'
+                prefix: 'App\Core\Domain\Model'
                 alias: Core
         controller_resolver:
             auto_mapping: false

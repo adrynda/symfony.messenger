@@ -8,7 +8,7 @@ security:
         users_in_memory: { memory: null }
         core_user_provider:
             entity:
-                class: App\Core\Domain\WriteModel\User\User
+                class: App\Core\Domain\Model\User\User
                 property: credentials.email
 
     firewalls:
