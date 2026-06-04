@@ -9,11 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-#[Route('/core/login', name: 'core_login')]
+#[Route('/panel/login', name: 'core_login', methods: ['GET', 'POST'])]
 final class LoginController extends AbstractCoreController
 {
-    #[Route(name: '', methods: ['GET', 'POST'])]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function __invoke(AuthenticationUtils $authenticationUtils): Response
     {
         if (!empty($this->getUser())) {
             return $this->redirectToRoute('core_home_view');

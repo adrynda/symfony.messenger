@@ -5,18 +5,20 @@ namespace App\Chat\UserInterface\TwigComponent\CreateChat;
 use App\Chat\Application\Exception\ChatAlreadyExistsException;
 use App\Chat\Application\Service\CreateChatDTO;
 use App\Chat\Application\Service\CreateChatService;
-use App\Chat\UserInterface\Form\CreateChatType;
+use App\Chat\Domain\Enum\ChatRoleEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
 #[AsLiveComponent('createChatForm', template: 'chat/components/_form.html.twig')]
+#[IsGranted(ChatRoleEnum::RoleCreateChat->value)]
 class CreateChatFormComponent extends AbstractController
 {
     use DefaultActionTrait;

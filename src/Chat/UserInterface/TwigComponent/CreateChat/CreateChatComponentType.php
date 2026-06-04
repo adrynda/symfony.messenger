@@ -2,14 +2,8 @@
 
 namespace App\Chat\UserInterface\TwigComponent\CreateChat;
 
-use App\Chat\Application\Service\CreateChatDTO;
 use App\Chat\UserInterface\Form\CreateChatType;
-use App\Core\Domain\Model\User\User;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Types\UuidType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

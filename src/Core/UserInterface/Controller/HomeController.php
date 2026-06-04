@@ -7,7 +7,7 @@ namespace App\Core\UserInterface\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/core', name: 'core')]
+#[Route('/panel', name: 'core')]
 final class HomeController extends AbstractCoreController
 {
     #[Route('/home', name: '_home_view', methods: ['GET'])]

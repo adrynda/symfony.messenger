@@ -11,8 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/chat/mercure/chats', name: 'chat_mercure_chats')]
+//#[IsGranted('ROLE_USER')]
 final class GetChatsListController extends AbstractController
 {
     use HandleTrait;

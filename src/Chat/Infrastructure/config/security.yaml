@@ -1,0 +1,3 @@
+security:
+    access_control:
+        - { path: ^/chat, roles: ROLE_CHAT_USER }
