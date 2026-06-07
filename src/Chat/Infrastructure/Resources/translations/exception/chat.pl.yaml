@@ -1,0 +1,5 @@
+exception:
+    access:
+        denied:
+            title: 'Brak uprawnień!'
+            details: 'Twoje konto użytkownika nie ma uprawnień do tej zakładki.'

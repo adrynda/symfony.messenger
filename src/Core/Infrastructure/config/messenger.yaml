@@ -1,6 +1,6 @@
 framework:
     messenger:
-        default_bus: core.registration.command.bus
+#        default_bus: core.registration.command.bus
         buses:
             core.registration.command.bus:
             core.query.bus:

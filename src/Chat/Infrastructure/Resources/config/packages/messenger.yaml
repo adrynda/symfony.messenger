@@ -1,0 +1,16 @@
+# src/Chat/Infrastructure/Resources/config/packages/messenger.yaml
+framework:
+    messenger:
+        buses:
+            chat.command.bus: ~
+            chat.query.bus: ~
+        transports:
+            chat.sync: 'sync://'
+            chat.async:
+                dsn: "%env(REDIS_URL)%"
+                options:
+                    stream: messages
+        routing:
+            'App\Chat\Application\Query\GetChatMessages\GetChatMessagesQuery': chat.sync
+            'App\Chat\Application\Command\SendMessage\SendMessageCommand': chat.sync
+            'App\Chat\Domain\Event\SentMessageEvent': chat.async

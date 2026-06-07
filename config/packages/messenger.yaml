@@ -1,11 +1,13 @@
 imports:
     - { resource: '../../src/Core/Infrastructure/config/messenger.yaml' }
-    - { resource: '../../src/Chat/Infrastructure/config/messenger.yaml' }
 
 framework:
     messenger:
         # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
         # failure_transport: failed
+        default_bus: common.bus
+        buses:
+            common.bus: ~
 
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration

@@ -1,0 +1,6 @@
+security:
+    role_hierarchy:
+        ROLE_CHAT_USER:
+            - ROLE_CREATE_CHAT
+            - ROLE_LIST_CHATS
+#        ROLE_CHAT_ADMIN: [ROLE_CHAT_USER, ROLE_ADMIN]

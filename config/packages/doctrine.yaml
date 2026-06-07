@@ -1,6 +1,3 @@
-imports:
-    - { resource: '../../src/Chat/Infrastructure/config/doctrine.yaml' }
-
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'

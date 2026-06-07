@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Chat\UserInterface\Controller\Chats;
 
 use App\Chat\Application\Query\FindUserChats\FindUserChatsQuery;
+use App\Chat\Domain\Enum\ChatRoleEnum;
 use App\Chat\UserInterface\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/chat/mercure/chats', name: 'chat_mercure_chats')]
-//#[IsGranted('ROLE_USER')]
+#[IsGranted(ChatRoleEnum::RoleListChats->value)]
 final class GetChatsListController extends AbstractController
 {
     use HandleTrait;
@@ -29,7 +30,7 @@ final class GetChatsListController extends AbstractController
         $this->messageBus = $queryBus;
         $chats = $this->handle(new FindUserChatsQuery($this->getUser()->id));
 
-        return $this->render('chat/mercure/chats/list.html.twig', [
+        return $this->render('@Chat/chat/list/index.html.twig', [
             'chats' => $chats,
         ]);
     }

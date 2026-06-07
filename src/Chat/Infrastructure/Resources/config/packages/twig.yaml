@@ -1,0 +1,4 @@
+# src/Chat/Infrastructure/config/twig.yaml
+twig:
+    paths:
+        '%kernel.project_dir%/src/Chat/Infrastructure/Resources/templates': 'Chat'

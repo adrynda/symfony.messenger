@@ -17,7 +17,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent('createChatForm', template: 'chat/components/_form.html.twig')]
+#[AsLiveComponent('createChatForm', template: '@Chat/components/_form.html.twig')]
 #[IsGranted(ChatRoleEnum::RoleCreateChat->value)]
 class CreateChatFormComponent extends AbstractController
 {

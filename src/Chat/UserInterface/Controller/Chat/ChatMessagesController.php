@@ -31,7 +31,7 @@ final class ChatMessagesController extends AbstractController
         $this->messageBus = $queryBus;
         $users = $this->handle(new GetUserFriendListQuery($this->getUser()->id));
 
-        return $this->render('chat/mercure/chat/form.html.twig', [
+        return $this->render('@Chat/mercure/chat/form.html.twig', [
             'users' => $users,
             'csrfTokenKey' => $this->getCsrfTokenKey(),
         ]);

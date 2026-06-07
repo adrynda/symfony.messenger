@@ -1,4 +1,4 @@
-{% extends "core/common/template.html.twig" %}
+{% extends "@Chat/common/template.html.twig" %}
 {% trans_default_domain 'chat' %}
 
 {% block stylesheets %}
@@ -61,7 +61,7 @@
     <script>
         function loadCurrentUser()
         {
-            // fetch('/core/user/me', {
+            // fetch('/@Chat/user/me', {
             //     method: 'GET',
             // })
             // .then((response) => response.json())

@@ -1,4 +1,4 @@
-{% extends "core/common/template.html.twig" %}
+{% extends "@Chat/common/template.html.twig" %}
 {% trans_default_domain 'chat' %}
 
 {% block title %}
@@ -12,6 +12,7 @@
             {{ 'chat.form.title'|trans }}
         </h2>
 
+{#        {{ form(form) }}#}
         {{ component('createChatForm') }}
 
     </div>
