@@ -23,7 +23,7 @@ final readonly class ExceptionEventListener
 
     public function onKernelException(ExceptionEvent $event): void
     {
-        dd($event->getThrowable());
+//        dd($event->getThrowable());
         // todo: może return link do ostatniej dostępnej strony?
         if (!$this->isCorrectModule($event)) {
             return;

@@ -1,0 +1,62 @@
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: docker/dev/Dockerfile
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql://app:app@db-symfony-messenger:5432/app?serverVersion=16&charset=utf8"
+      MERCURE_URL: "http://mercure-symfony-messenger/.well-known/mercure"
+      MERCURE_PUBLIC_URL: "http://symfony-messenger.localhost/.well-known/mercure"
+      MERCURE_JWT_SECRET: '!ChangeThisMercureHubJWTSecretKey!'
+      REDIS_URL: "redis://redis-symfony-messenger:6379"
+    volumes:
+      - ../..:/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.symfony-messenger.rule=Host(`symfony-messenger.localhost`)"
+      - "traefik.http.services.symfony-messenger.loadbalancer.server.port=80"
+    networks:
+      - web
+
+  database:
+    image: postgres:16-alpine
+    container_name: db-symfony-messenger
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "app", "-U", "app"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+    networks:
+      - web
+
+  mercure:
+    image: dunglas/mercure
+    container_name: mercure-symfony-messenger
+    restart: unless-stopped
+    environment:
+      MERCURE_PUBLISHER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      MERCURE_SUBSCRIBER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      MERCURE_EXTRA_DIRECTIVES: |
+        cors_origins http://symfony-messenger.localhost
+    command: /usr/bin/caddy run --config /etc/caddy/dev.Caddyfile
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/healthz"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+networks:
+  web:
+    external: true
+    name: web
+
+volumes:
+  database_data:
