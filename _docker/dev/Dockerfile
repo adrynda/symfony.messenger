@@ -13,6 +13,8 @@ RUN install-php-extensions \
     redis \
     intl
 
+RUN git config --global --add safe.directory /app
+
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 

@@ -3,20 +3,23 @@ services:
 #    container_name: symfony-messenger-php
     build:
       context: ../../
-      dockerfile: docker/dev/Dockerfile
+      dockerfile: _docker/dev/Dockerfile
     restart: unless-stopped
     environment:
+      DEFAULT_URI: "http://symfony.messenger.local"
       DATABASE_URL: "postgresql://app:app@database:5432/app?serverVersion=16&charset=utf8"
       MERCURE_URL: "http://mercure/.well-known/mercure"
       MERCURE_PUBLIC_URL: "http://symfony-messenger.localhost/.well-known/mercure"
       MERCURE_JWT_SECRET: '!ChangeThisMercureHubJWTSecretKey!'
       REDIS_URL: "redis://redis:6379"
+      MESSENGER_TRANSPORT_DSN: "redis://redis:6379/messages"
     volumes:
       - ../..:/app
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.symfony-messenger.rule=Host(`symfony-messenger.localhost`)"
       - "traefik.http.services.symfony-messenger.loadbalancer.server.port=80"
+      - "traefik.docker.network=web"
     networks:
       - internal
       - web
@@ -59,6 +62,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.symfony-messenger-mercure.rule=Host(`symfony-messenger.localhost`) && PathPrefix(`/.well-known/mercure`)
       - traefik.http.services.symfony-messenger-mercure.loadbalancer.server.port=80
+      - traefik.docker.network=web
     networks:
       - internal
       - web
