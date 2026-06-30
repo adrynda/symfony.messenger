@@ -1,5 +1,8 @@
 FROM dunglas/frankenphp:php8.3
 
+ARG USER_UID=1000
+ARG USER_GID=1000
+
 # Rozszerzenia systemowe
 RUN apt-get update && apt-get install -y \
     git unzip libpq-dev libonig-dev libzip-dev \
@@ -12,6 +15,10 @@ RUN install-php-extensions \
     zip \
     redis \
     intl
+
+# Utworzenie usera o UID/GID zgodnym z hostem
+RUN groupadd -g ${USER_GID} appuser \
+    && useradd -u ${USER_UID} -g appuser -m -s /bin/bash appuser
 
 RUN git config --global --add safe.directory /app
 

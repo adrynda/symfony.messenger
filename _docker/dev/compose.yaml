@@ -4,6 +4,9 @@ services:
     build:
       context: ../../
       dockerfile: _docker/dev/Dockerfile
+      args:
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
     restart: unless-stopped
     environment:
       DEFAULT_URI: "http://symfony.messenger.local"
@@ -15,14 +18,20 @@ services:
       MESSENGER_TRANSPORT_DSN: "redis://redis:6379/messages"
     volumes:
       - ../..:/app
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -so /dev/null http://localhost/ || exit 1" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.symfony-messenger.rule=Host(`symfony-messenger.localhost`)"
       - "traefik.http.services.symfony-messenger.loadbalancer.server.port=80"
-      - "traefik.docker.network=web"
+      - "traefik.docker.network=server"
     networks:
       - internal
-      - web
+      - server
 
   database:
     image: postgres:16-alpine
@@ -41,7 +50,7 @@ services:
       - database_data:/var/lib/postgresql/data:rw
     networks:
       - internal
-      - web
+      - server
 
   mercure:
     image: dunglas/mercure
@@ -62,10 +71,10 @@ services:
       - traefik.enable=true
       - traefik.http.routers.symfony-messenger-mercure.rule=Host(`symfony-messenger.localhost`) && PathPrefix(`/.well-known/mercure`)
       - traefik.http.services.symfony-messenger-mercure.loadbalancer.server.port=80
-      - traefik.docker.network=web
+      - traefik.docker.network=server
     networks:
       - internal
-      - web
+      - server
 
   redis:
 #    container_name: symfony-messenger-redis
@@ -86,9 +95,9 @@ services:
 networks:
   internal:
     driver: bridge
-  web:
+  server:
     external: true
-    name: web
+    name: server
 
 volumes:
   database_data:

@@ -1,8 +1,8 @@
-up:
-	./_scripts/up.sh
+up-%:
+	./_scripts/up.sh $*
 
-down:
-	./_scripts/down.sh
+down-%:
+	./_scripts/down.sh $*
 
 build-%:
 	./_scripts/build.sh $*

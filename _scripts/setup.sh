@@ -10,6 +10,7 @@ set -e
         set -e
         composer install
         composer dump-env $APP_ENV
+        php bin/console tailwind:build --no-interaction
         php bin/console doctrine:database:drop --force --if-exists
         php bin/console doctrine:database:create
         php bin/console doctrine:migrations:migrate --no-interaction
