@@ -35,8 +35,14 @@ services:
 
   database:
     image: postgres:16-alpine
-#    container_name: symfony-messenger-db
+    container_name: symfony-messenger-db  # unique name for Adminer DNS resolution across projects
     restart: unless-stopped
+    # TODO: replace port mapping with Traefik TCP TLS passthrough to avoid inter-project port conflicts.
+    # Requires PostgreSQL SSL cert (ssl=on in postgresql.conf + server.crt/server.key) and
+    # traefik.tcp.routers.*.tls.passthrough=true label — Traefik reads SNI and forwards raw bytes,
+    # so PostgreSQL handles TLS itself. DBeaver connects to db.symfony-messenger.localhost:5432 with sslmode=require.
+    ports:
+      - "${DB_HOST_PORT:-5432}:5432"
     environment:
       POSTGRES_DB: app
       POSTGRES_USER: app
@@ -50,7 +56,7 @@ services:
       - database_data:/var/lib/postgresql/data:rw
     networks:
       - internal
-      - server
+      - adminer
 
   mercure:
     image: dunglas/mercure
@@ -98,6 +104,9 @@ networks:
   server:
     external: true
     name: server
+  adminer:
+    external: true
+    name: adminer
 
 volumes:
   database_data:
