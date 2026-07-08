@@ -1,9 +1,5 @@
 {# _layout/email.html.twig #}
-{# Klasy poniżej to inline-CSS analogia klas Tailwind z resztą aplikacji
-   (patrz _layout/template.html.twig, _layout/menu.html.twig). Filtr
-   inline_css (twig/cssinliner-extra) zamienia je na atrybuty style="..."
-   przy renderze, bo klienty pocztowe nie ładują zewnętrznego CSS z AssetMappera. #}
-{% apply inline_css %}
+{% apply inline_css|strip_style_tags %}
 <!DOCTYPE html>
 <html>
 <head>
