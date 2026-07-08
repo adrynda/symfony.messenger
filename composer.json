@@ -21,9 +21,11 @@
         "symfony/flex": "^2",
         "symfony/form": "^7.4",
         "symfony/framework-bundle": "7.4.*",
+        "symfony/mailer": "7.4.*",
         "symfony/mercure": "^0.7.2",
         "symfony/mercure-bundle": "^0.4.2",
         "symfony/messenger": "^7.4",
+        "symfony/monolog-bundle": "^4.0",
         "symfony/property-access": "7.4.*",
         "symfony/property-info": "7.4.*",
         "symfony/redis-messenger": "^7.4",
@@ -37,7 +39,8 @@
         "symfony/ux-turbo": "^2.36",
         "symfony/validator": "7.4.*",
         "symfony/yaml": "7.4.*",
-        "symfonycasts/tailwind-bundle": "^0.12.0"
+        "symfonycasts/tailwind-bundle": "^0.12.0",
+        "twig/cssinliner-extra": "^3.26"
     },
     "config": {
         "allow-plugins": {

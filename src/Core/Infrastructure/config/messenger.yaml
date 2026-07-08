@@ -16,8 +16,12 @@ framework:
                     stream: messages
 
         routing:
-            '\App\Core\Application\Command\RegisterUser\RegisterUserCommand': sync
-            '\App\Core\Application\Query\IsEmailTaken\IsEmailTakenQuery': sync
+            ### sync
+            'App\Core\Application\Command\RegisterUser\RegisterUserCommand': sync
+            'App\Core\Application\Query\IsEmailTaken\IsEmailTakenQuery': sync
+            'App\Core\Application\Event\UserWasRegistered\UserWasRegisteredEvent': sync
+            ### async
+            'App\Core\Application\Command\SendUserActivationMail\SendUserActivationMailCommand': async
 
 # when@test:
 #    framework:

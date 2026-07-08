@@ -1,4 +1,4 @@
-{# core/common/template.html.twig #}
+{# _layout/template.html.twig #}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
 <body class="flex flex-col min-h-screen bg-gray-50 text-gray-900">
 
 {% block header %}
-    {% include 'core/common/menu.html.twig' %}
+    {% include '_layout/menu.html.twig' %}
 {% endblock %}
 
 <main class="flex-1 bg-gray-50">
@@ -25,7 +25,7 @@
 
 {% block footer %}
     <footer class="mt-auto py-4 bg-gray-900 text-gray-400 text-center text-sm">
-        <p>Footer</p>
+        <p>{{ '_layout.template.footer'|trans }}</p>
     </footer>
 {% endblock %}
 

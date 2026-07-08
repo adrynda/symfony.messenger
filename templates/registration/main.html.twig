@@ -1,13 +1,12 @@
-{# core/registration.html.twig #}
-{% extends "core/common/template.html.twig" %}
-{% trans_default_domain 'core' %}
+{# registration/main.html.twig #}
+{% extends "_layout/template.html.twig" %}
 
 {% block title %}
-    {{ 'site.title.core.registration'|trans({}, 'site') }}
+    {{ 'registration.site.title'|trans }}
 {% endblock %}
 
 {% block body %}
-    {% set transKey = 'core.form.registration.' %}
+    {% set transKey = 'registration.form.' %}
     <div class="flex items-center justify-center min-h-screen bg-gray-50">
         <div class="w-full max-w-sm bg-white rounded-xl border border-gray-200 p-8">
 
@@ -16,8 +15,8 @@
             {{ component('registrationForm') }}
 
             <p class="mt-4 text-center text-sm text-gray-500">
-                {{ (transKey ~ 'got.account')|trans }}
-                <a href="{{ path('core_login') }}" class="text-blue-600 hover:underline">{{ (transKey ~ 'login')|trans }}</a>
+                {{ (transKey ~ 'got_account')|trans }}
+                <a href="{{ path('core_login') }}" class="text-blue-600 hover:underline">{{ (transKey ~ 'login_link_label')|trans }}</a>
             </p>
 
         </div>

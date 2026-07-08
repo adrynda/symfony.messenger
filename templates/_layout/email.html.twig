@@ -1,0 +1,75 @@
+{# _layout/email.html.twig #}
+{# Klasy poniżej to inline-CSS analogia klas Tailwind z resztą aplikacji
+   (patrz _layout/template.html.twig, _layout/menu.html.twig). Filtr
+   inline_css (twig/cssinliner-extra) zamienia je na atrybuty style="..."
+   przy renderze, bo klienty pocztowe nie ładują zewnętrznego CSS z AssetMappera. #}
+{% apply inline_css %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-900 { background-color: #111827; }
+        .text-white { color: #ffffff; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-sm { font-size: 13px; }
+        .text-xl { font-size: 20px; }
+        .font-semibold { font-weight: 600; }
+        .tracking-wide { letter-spacing: 0.02em; }
+        .px-4 { padding-left: 24px; padding-right: 24px; }
+        .py-3 { padding-top: 16px; padding-bottom: 16px; }
+        .py-4 { padding-top: 16px; padding-bottom: 16px; }
+    </style>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="bg-gray-50">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-gray-50">
+    <tr>
+        <td>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-gray-900">
+                <tr>
+                    <td align="center" class="px-4 py-3">
+                        <h1 class="text-xl font-semibold tracking-wide text-white" style="margin: 0;">
+                            {{ '_layout.email.nav.title'|trans }}
+                        </h1>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 32px 16px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        {% block content %}{% endblock %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% block footer %}
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-gray-900">
+                    <tr>
+                        <td align="center" class="py-4">
+                            <p class="text-gray-400 text-sm" style="margin: 0;">
+                                {{ '_layout.email.footer.automatically_generate_message'|trans }}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            {% endblock %}
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
+{% endapply %}

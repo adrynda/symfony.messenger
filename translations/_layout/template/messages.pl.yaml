@@ -1,0 +1,20 @@
+_layout:
+    template:
+        site:
+            title: "Portfolio"
+        footer: "Stopka"
+    email:
+        nav:
+            title: "Portfolio"
+        footer:
+            automatically_generate_message: "Ta wiadomość została wygenerowana automatycznie. Proszę na nią nie odpowiadać."
+#site:
+#    title:
+#        main: 'Portfolio'
+#        core:
+##            registration: 'Rejestracja'
+##            login: 'Logowanie'
+#            home: 'Strona główna'
+#        chat:
+#            list: 'Lista czatów'
+#            create: 'Zakładanie czatu'

@@ -10,6 +10,9 @@ build-%:
 setup-%:
 	./_scripts/setup.sh $*
 
+worker-%:
+	./_scripts/worker.sh $*
+
 build-front:
 	php bin/console cache:clear
 	php bin/console tailwind:build

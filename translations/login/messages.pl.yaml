@@ -1,0 +1,15 @@
+login:
+    site:
+        title: "Strona logowania"
+    form:
+        field:
+            email:
+                label: 'Adres e-mail'
+                placeholder: 'np. jan.kowalski@gmail.com'
+            password:
+                label: 'Hasło'
+            submit:
+                label: 'Zaloguj się'
+        title: 'Logowanie'
+        no_account: 'Nie masz konta?'
+        registration_link_label: 'Zarejestruj się'

@@ -11,24 +11,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LoginType extends AbstractType
 {
-    private const TRANS_KEY = 'core.form.login.';
+    private const TRANS_KEY = 'login.form.field.';
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => self::TRANS_KEY . 'email',
+                'label' => self::TRANS_KEY . 'email.label',
                 'attr' => [
-                    'placeholder' => self::TRANS_KEY . 'placeholder.email',
+                    'placeholder' => self::TRANS_KEY . 'email.placeholder',
                 ],
                 'required' => true,
             ])
             ->add('password', PasswordType::class, [
                 'required' => true,
-                'label' => self::TRANS_KEY . 'password',
+                'label' => self::TRANS_KEY . 'password.label',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => self::TRANS_KEY . 'submit',
+                'label' => self::TRANS_KEY . 'submit.label',
             ])
         ;
     }
@@ -38,7 +38,6 @@ class LoginType extends AbstractType
         $resolver->setDefaults([
             'csrf_protection' => true,
             'csrf_token_id' => 'authenticate',
-            'translation_domain' => 'core',
         ]);
     }
 }

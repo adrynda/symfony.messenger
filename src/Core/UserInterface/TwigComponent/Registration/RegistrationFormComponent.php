@@ -40,7 +40,7 @@ class RegistrationFormComponent extends AbstractController
 
         $this->commandBus->dispatch(new RegisterUserCommand($dto));
 
-        $this->addFlash('core.registration.form.success', 'core.registration.form.success.notify.email');
+        $this->addFlash('core.registration.form.success', 'registration.form.success.activation_email_soon');
 
         return $this->redirectToRoute('core_login');
     }

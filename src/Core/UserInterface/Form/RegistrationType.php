@@ -14,7 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationType extends AbstractType
 {
-    protected const TRANS_KEY = 'core.form.registration.';
+    protected const TRANS_KEY = 'registration.form.field.';
 
     public function __construct(
         protected readonly TranslatorInterface $translator
@@ -24,35 +24,31 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => self::TRANS_KEY . 'username',
+                'label' => self::TRANS_KEY . 'username.label',
                 'required' => true,
                 'attr' => [
-                    'placeholder' => self::TRANS_KEY . 'placeholder.username',
+                    'placeholder' => self::TRANS_KEY . 'username.placeholder',
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => self::TRANS_KEY . 'email',
+                'label' => self::TRANS_KEY . 'email.label',
                 'required' => true,
                 'attr' => [
-                    'placeholder' => self::TRANS_KEY . 'placeholder.email',
+                    'placeholder' => self::TRANS_KEY . 'email.placeholder',
                 ],
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => $this->translator->trans(
-                    self::TRANS_KEY . 'password.mismatch',
-                    [],
-                    'core'
-                ),
+                'invalid_message' => $this->translator->trans(self::TRANS_KEY . 'password.mismatch'),
                 'required' => true,
                 'options' => [
                     'always_empty' => false,
                 ],
                 'first_options' => [
-                    'label' => self::TRANS_KEY . 'password.main',
+                    'label' => self::TRANS_KEY . 'password_main.label',
                 ],
                 'second_options' => [
-                    'label' => self::TRANS_KEY . 'password.repeat',
+                    'label' => self::TRANS_KEY . 'password_repeat.label',
                 ],
             ])
         ;
@@ -63,7 +59,6 @@ class RegistrationType extends AbstractType
         $resolver->setDefaults([
             'data_class' => RegistrationDTO::class,
             'csrf_protection' => true,
-            'translation_domain' => 'core',
         ]);
     }
 }

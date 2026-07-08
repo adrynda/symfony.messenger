@@ -1,0 +1,51 @@
+{% extends "_layout/email.html.twig" %}
+
+{% block title %}{{ 'registration.email.user_activation.subject'|trans({'%username%': username}) }}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .card { max-width: 480px; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }
+        .card-body { padding: 32px; }
+        .heading { margin: 0 0 12px; font-size: 18px; font-weight: 600; color: #111827; }
+        .text-body { margin: 0 0 20px; font-size: 14px; line-height: 1.6; color: #374151; }
+        .text-muted { margin: 24px 0 0; font-size: 13px; line-height: 1.6; color: #6b7280; }
+        .btn { border-radius: 6px; background-color: #2563eb; }
+        .btn-link { display: inline-block; padding: 10px 24px; font-size: 14px; font-weight: 600; color: #ffffff; text-decoration: none; }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="card">
+        <tr>
+            <td class="card-body">
+
+                <h2 class="heading">
+                    {{ 'registration.email.user_activation.welcome'|trans({'%username%': username}) }}
+                </h2>
+
+                <p class="text-body">
+                    {{ 'registration.email.user_activation.content'|trans }}
+                </p>
+
+                <p class="text-body" style="margin-bottom: 12px;">
+                    {{ 'registration.email.user_activation.activate_button'|trans }}
+                </p>
+
+                <table role="presentation" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="btn">
+                            <a href="{{ activationLink }}" class="btn-link">
+                                {{ 'registration.email.user_activation.activate_button_label'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="text-muted">
+                    {{ 'registration.email.user_activation.copy_activate_link'|trans({'%activationLink%': activationLink}) }}
+                </p>
+
+            </td>
+        </tr>
+    </table>
+{% endblock %}

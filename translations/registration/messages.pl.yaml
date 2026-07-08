@@ -1,0 +1,30 @@
+registration:
+    site:
+        title: "Strona rejestracji"
+    form:
+        field:
+            username:
+                label: "Nazwa użytkownika"
+                placeholder: "np. Jan Kowalski"
+            email:
+                label: "Adres e-mail"
+                placeholder: "np. jan.kowalski@gmail.com"
+            password_main:
+                label: "Hasło"
+            password_repeat:
+                label: "Powtórz hasło"
+            password:
+                mismatch: "Hasła nie są zgodne"
+            submit:
+                label: "Zarejestruj się"
+        title: "Zarejestruj się"
+        got_account: "Masz już konto?"
+        login_link_label: "Zaloguj się"
+    email:
+        user_activation:
+            subject: "Link aktywacyjny do konta %username%"
+            welcome: "Witaj %username%!"
+            content: "Cieszę się, że zdecydowałeś się na założenie konta w mojej aplikacji. Aktywuj konto, by móc się zalogować i korzystać oferowanych dobrodziejstw."
+            activate_button: "W celu aktywacji konta kliknij poniższy przycisk:"
+            activate_button_label: "aktywacja"
+            copy_activate_link: "lub skopiuj i otwórz w przeglądarce adres: %activationLink%"

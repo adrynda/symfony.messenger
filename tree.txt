@@ -1,0 +1,67 @@
+src/Core
+├── Application
+│   ├── Command
+│   │   └── RegisterUser
+│   │       ├── RegisterUserCommand.php
+│   │       └── RegisterUserHandler.php
+│   └── Query
+│       └── IsEmailTaken
+│           ├── IsEmailTakenHandler.php
+│           └── IsEmailTakenQuery.php
+├── Domain
+│   ├── DTO
+│   │   └── RegistrationDTO.php
+│   ├── Message
+│   │   └── UserActivationMessage.php
+│   ├── Model
+│   │   ├── AbstractUuidEntity.php
+│   │   └── User
+│   │       ├── Credentials.php
+│   │       └── User.php
+│   └── Repository
+│       ├── Read
+│       │   └── UserRepositoryInterface.php
+│       └── Write
+│           └── UserRepositoryInterface.php
+├── Infrastructure
+│   ├── DoctrineListener
+│   │   └── UserListener.php
+│   ├── Persistence
+│   │   └── User
+│   │       ├── Read
+│   │       │   └── UserRepository.php
+│   │       └── Write
+│   │           └── UserRepository.php
+│   ├── Security
+│   │   ├── AbstractAuthenticator.php
+│   │   ├── CoreUserAuthenticator.php
+│   │   └── CoreUserTurboAuthenticator.php
+│   ├── TwigExtension
+│   │   └── CurrentUserExtension.php
+│   └── config
+│       ├── messenger.yaml
+│       └── services.yaml
+└── UserInterface
+    ├── Controller
+    │   ├── AbstractCoreController.php
+    │   ├── AbstractTurboController.php
+    │   ├── HomeController.php
+    │   ├── LoginController.php
+    │   ├── LogoutController.php
+    │   └── RegistrationController.php
+    ├── DTO
+    │   ├── TurboFrameDTO.php
+    │   └── TurboStreamDTO.php
+    ├── Form
+    │   ├── LoginType.php
+    │   └── RegistrationType.php
+    ├── TwigComponent
+    │   └── Registration
+    │       ├── RegistrationComponentType.php
+    │       └── RegistrationFormComponent.php
+    └── Validator
+        └── UniqueEmail
+            ├── UniqueEmail.php
+            └── UniqueEmailValidator.php
+
+31 directories, 34 files

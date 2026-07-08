@@ -21,7 +21,7 @@ final class LoginController extends AbstractCoreController
         $form = $this->createForm(LoginType::class);
         $form->handleRequest($this->request);
 
-        return $this->render('core/login.html.twig', [
+        return $this->render('login/main.html.twig', [
             'form' => $form,
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);

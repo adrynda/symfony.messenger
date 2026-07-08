@@ -1,0 +1,3 @@
+validator:
+    unique_email:
+        already_taken: "Podany adres e-mail jest już zajęty!"

@@ -15,7 +15,7 @@ class RegistrationComponentType extends RegistrationType
 
         $builder
             ->add('submit', SubmitType::class, [
-                'label' => self::TRANS_KEY . 'submit',
+                'label' => self::TRANS_KEY . 'submit.label',
             ])
         ;
     }

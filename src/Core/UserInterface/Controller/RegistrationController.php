@@ -17,6 +17,6 @@ final class RegistrationController extends AbstractController
             return $this->redirectToRoute('core_home_view');
         }
 
-        return $this->render('core/registration.html.twig');
+        return $this->render('registration/main.html.twig');
     }
 }

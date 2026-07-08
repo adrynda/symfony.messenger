@@ -2,18 +2,21 @@
 
 namespace App\Core\Application\Command\RegisterUser;
 
+use App\Core\Application\Event\UserWasRegistered\UserWasRegisteredEvent;
 use App\Core\Domain\DTO\RegistrationDTO;
 use App\Core\Domain\Model\User\User;
 use App\Core\Domain\Repository\Write\UserRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsMessageHandler]
-class RegisterUserHandler
+final readonly class RegisterUserHandler
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly UserPasswordHasherInterface $passwordHasher
+        private UserRepositoryInterface $userRepository,
+        private UserPasswordHasherInterface $passwordHasher,
+        private MessageBusInterface $messageBus,
     ) {}
 
     public function __invoke(RegisterUserCommand $command): void
@@ -27,6 +30,8 @@ class RegisterUserHandler
         );
 
         $this->userRepository->save($user);
+
+        $this->messageBus->dispatch(new UserWasRegisteredEvent($user));
     }
 
     private function checkUserExists(RegistrationDTO $dto): void

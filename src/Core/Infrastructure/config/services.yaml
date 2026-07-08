@@ -9,3 +9,14 @@ services:
 
     App\Messenger\Mercure\Chat\Domain\Service\PublisherInterface:
         class: App\Messenger\Mercure\Chat\Infrastructure\Service\Publisher
+
+    App\Core\Domain\Service\Mailer\RegisteredUserActivationMailer\RegisteredUserActivationMailerInterface:
+        alias: App\Core\Infrastructure\Mailer\RegisteredUserActivationMailer
+
+    App\Core\Infrastructure\Mailer\RegisteredUserActivationMailer:
+        arguments:
+            $from: !service
+                class: Symfony\Component\Mime\Address
+                arguments:
+                    $address: "no-reply@du.pa"
+#                    $name: "Rejestracja"

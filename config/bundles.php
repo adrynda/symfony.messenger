@@ -14,5 +14,6 @@ return [
     Symfony\UX\TwigComponent\TwigComponentBundle::class => ['all' => true],
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
     Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
-    \App\Chat\ChatBundle::class => ['all' => true],
+    App\Chat\ChatBundle::class => ['all' => true],
+    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
 ];
