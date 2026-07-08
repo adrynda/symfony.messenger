@@ -26,8 +26,8 @@ final readonly class RegisteredUserActivationMailer implements RegisteredUserAct
             ->from($this->from)
             ->to(new Address($dto->email))
             ->subject($this->translator->trans('registration.email.user_activation.subject', ['%username%' => $dto->username]))
-            ->htmlTemplate('registration/email.html.twig') // todo: dopiero do wygenerowania
-            ->textTemplate('registration/email.txt.twig') // todo: dopiero do wygenerowania
+            ->htmlTemplate('registration/email.html.twig')
+            ->textTemplate('registration/email.txt.twig')
             ->context([
                 'username' => $dto->username,
                 'activationLink' => $dto->activationLink,
