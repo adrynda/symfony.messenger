@@ -29,7 +29,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.symfony-messenger.rule=Host(`symfony-messenger.localhost`)
       - traefik.http.services.symfony-messenger.loadbalancer.server.port=80
-      - traefik.docker.network=server
+      - traefik.docker.network=traefik
     networks:
       - internal
       - server
@@ -77,7 +77,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.symfony-messenger-mercure.rule=Host(`symfony-messenger.localhost`) && PathPrefix(`/.well-known/mercure`)
       - traefik.http.services.symfony-messenger-mercure.loadbalancer.server.port=80
-      - traefik.docker.network=server
+      - traefik.docker.network=traefik
     networks:
       - internal
       - server
@@ -116,7 +116,7 @@ services:
 #      - traefik.http.routers.mailpit.middlewares=mailpit-auth
 #      - traefik.http.middlewares.mailpit-auth.basicauth.users=admin:$$2y$$05$$CNGZ3x5LIbcmPnoQoSMKfOmgNbPwgSvtHgkIJyIihp7rgTXjzoJS.
       - traefik.http.services.mailpit.loadbalancer.server.port=8025
-      - traefik.docker.network=server
+      - traefik.docker.network=traefik
     networks:
       - internal
       - server
@@ -129,7 +129,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.adminer.rule=Host(`adminer.symfony-messenger.localhost`)
       - traefik.http.services.adminer.loadbalancer.server.port=8080
-      - traefik.docker.network=server
+      - traefik.docker.network=traefik
     networks:
       - internal
       - server
