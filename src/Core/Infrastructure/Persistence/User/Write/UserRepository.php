@@ -16,10 +16,10 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
         parent::__construct($registry, User::class);
     }
 
-    public function save(User $user): void
+    public function save(User $userToken): void
     {
         $em = $this->getEntityManager();
-        $em->persist($user);
+        $em->persist($userToken);
         $em->flush();
     }
 }

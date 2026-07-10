@@ -9,6 +9,7 @@ use App\Core\Domain\Model\AbstractUuidEntity;
 use App\Chat\Domain\Model\Chat;
 use App\Chat\Domain\Model\Message;
 use App\Chat\Domain\Model\Trait\MessagesTrait;
+use App\Core\Domain\Model\UserToken;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,6 +30,9 @@ class User extends AbstractUuidEntity implements UserInterface, PasswordAuthenti
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'user', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $messages;
 
+    #[ORM\OneToMany(targetEntity: UserToken::class, mappedBy: 'user')]
+    private Collection $tokens;
+
     private function __construct(
         UuidV1 $id,
 
@@ -43,10 +47,12 @@ class User extends AbstractUuidEntity implements UserInterface, PasswordAuthenti
 
         array $chats = [],
         array $messages = [],
+        array $tokens = [],
     ) {
         parent::__construct($id);
         $this->chats = new ArrayCollection($chats);
         $this->messages = new ArrayCollection($messages);
+        $this->tokens = new ArrayCollection($tokens);
     }
 
     /**
