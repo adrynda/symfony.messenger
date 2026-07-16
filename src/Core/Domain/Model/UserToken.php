@@ -7,6 +7,7 @@ namespace App\Core\Domain\Model;
 use App\Core\Domain\Enum\UserTokenTypeEnum;
 use App\Core\Domain\Model\User\User;
 use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV1;
@@ -19,13 +20,13 @@ class UserToken extends AbstractUuidEntity
         UuidV1 $id,
 
         #[ORM\Column(enumType: UserTokenTypeEnum::class)]
-        public readonly UserTokenTypeEnum $enum,
+        public readonly UserTokenTypeEnum $type,
 
-        #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userTokens')]
+        #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userTokens', fetch: 'EAGER')]
         #[ORM\JoinColumn(nullable: false)]
         public readonly User $user,
 
-        #[ORM\Column(type: 'datetime_immutable')]
+        #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
         public readonly ?DateTimeImmutable $expiresAt,
     ) {
         parent::__construct($id);
@@ -38,7 +39,7 @@ class UserToken extends AbstractUuidEntity
     ): self {
         return new self(
             id: Uuid::v1(),
-            enum: $enum,
+            type: $enum,
             user: $user,
             expiresAt: $expiresAt,
         );

@@ -16,3 +16,5 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 /CLAUDE.md
+
+.aider.*

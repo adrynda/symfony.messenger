@@ -10,7 +10,7 @@ use App\Core\Domain\Repository\Write\UserTokenRepositoryInterface;
 use App\Core\Domain\Service\Mailer\RegisteredUserActivationMailer\RegisteredUserActivationMailerDTO;
 use App\Core\Domain\Service\Mailer\RegisteredUserActivationMailer\RegisteredUserActivationMailerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[AsMessageHandler]
 final readonly class SendUserActivationMailHandler
@@ -19,7 +19,7 @@ final readonly class SendUserActivationMailHandler
         private UserRepositoryInterface $userRepository,
         private RegisteredUserActivationMailerInterface $mailer,
         private UserTokenRepositoryInterface $userTokenRepository,
-        private UrlGenerator $urlGenerator,
+        private UrlGeneratorInterface $urlGenerator,
     ) {}
 
     public function __invoke(SendUserActivationMailCommand $command): void
@@ -40,7 +40,7 @@ final readonly class SendUserActivationMailHandler
         $this->mailer->send(new RegisteredUserActivationMailerDTO(
             email: $user->credentials->email,
             username: $user->username,
-            activationLink: $this->urlGenerator->generate('activation', ['token' => $userToken->id]),
+            activationLink: $this->urlGenerator->generate('core_activate', ['userTokenId' => $userToken->id], UrlGeneratorInterface::ABSOLUTE_URL),
         ));
     }
 }

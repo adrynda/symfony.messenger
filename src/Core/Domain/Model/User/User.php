@@ -12,6 +12,7 @@ use App\Chat\Domain\Model\Trait\MessagesTrait;
 use App\Core\Domain\Model\UserToken;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -31,19 +32,19 @@ class User extends AbstractUuidEntity implements UserInterface, PasswordAuthenti
     private Collection $messages;
 
     #[ORM\OneToMany(targetEntity: UserToken::class, mappedBy: 'user')]
-    private Collection $tokens;
+    private Collection $userTokens;
 
     private function __construct(
         UuidV1 $id,
 
-        #[ORM\Column(type: 'text')]
+        #[ORM\Column(type: Types::TEXT)]
         public string $username = '',
 
-        #[ORM\Column(type: 'text', nullable: true)]
+        #[ORM\Column(type: Types::TEXT, nullable: true)]
         public ?string $avatar = null,
 
         #[ORM\Embedded(Credentials::class)]
-        public readonly Credentials $credentials = new Credentials(),
+        public Credentials $credentials = new Credentials(),
 
         array $chats = [],
         array $messages = [],
@@ -52,7 +53,7 @@ class User extends AbstractUuidEntity implements UserInterface, PasswordAuthenti
         parent::__construct($id);
         $this->chats = new ArrayCollection($chats);
         $this->messages = new ArrayCollection($messages);
-        $this->tokens = new ArrayCollection($tokens);
+        $this->userTokens = new ArrayCollection($tokens);
     }
 
     /**
@@ -109,7 +110,7 @@ class User extends AbstractUuidEntity implements UserInterface, PasswordAuthenti
 
     public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        return $this->credentials->roles;
     }
 
     public function eraseCredentials(): void
