@@ -13,6 +13,6 @@ final class HomeController extends AbstractCoreController
     #[Route('/home', name: '_home_view', methods: ['GET'])]
     public function home(): Response
     {
-        return $this->render('core/home.html.twig');
+        return $this->render('home/main.html.twig');
     }
 }
