@@ -19,3 +19,6 @@ build-front:
 	php bin/console asset-map compile
 bash-%:
 	./_scripts/bash.sh $*
+
+clear-%:
+	./_scripts/clear.sh $*

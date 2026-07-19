@@ -6,5 +6,5 @@ set -e
 
 (
     cd _docker/$APP_ENV
-    docker exec -it dev-app-1 bash
+    docker exec -it app bash
 )
