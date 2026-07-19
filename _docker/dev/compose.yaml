@@ -134,6 +134,26 @@ services:
       - internal
       - traefik
 
+  redisinsight:
+    image: redis/redisinsight:latest
+    #    container_name: symfony-messenger-redis-ui
+    restart: unless-stopped
+    environment:
+      RI_ACCEPT_TERMS_AND_CONDITIONS: "true"
+      RI_REDIS_HOST0: "redis"
+      RI_REDIS_PORT0: "6379"
+      RI_REDIS_ALIAS0: "symfony-messenger"
+    volumes:
+      - redisinsight_data:/data
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.symfony-messenger-redisinsight.rule=Host(`redis.symfony-messenger.localhost`)
+      - traefik.http.services.symfony-messenger-redisinsight.loadbalancer.server.port=5540
+      - traefik.docker.network=traefik
+    networks:
+      - internal
+      - traefik
+
 networks:
   internal:
     driver: bridge
@@ -145,3 +165,4 @@ volumes:
   database_data:
   redis_data:
   mailpit_data:
+  redisinsight_data:
