@@ -37,7 +37,7 @@ final readonly class RegisterUserHandler
     private function checkUserExists(RegistrationDTO $dto): void
     {
         if (!empty($this->userRepository->findBy(['credentials.email' => $dto->email]))) {
-            throw new \DomainException('User already exists');
+            throw new \DomainException("exception.user.already_exists");
         }
     }
 }

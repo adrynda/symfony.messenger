@@ -12,6 +12,6 @@ final class LogoutController extends AbstractCoreController
 {
     public function __invoke(): Response
     {
-        throw new \LogicException('Handled by security.');
+        throw new \LogicException('security.handled_by');
     }
 }

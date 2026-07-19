@@ -1,0 +1,4 @@
+security:
+    user:
+        inactive: "Konto użytkownika jest nieaktywne."
+    handled_by: "Obsługa przez moduł bezpieczeńśtwa"

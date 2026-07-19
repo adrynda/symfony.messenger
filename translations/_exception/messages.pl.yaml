@@ -1,0 +1,6 @@
+exception:
+    user_token:
+        not_found: "Nie znaleziono tokenu"
+        expired: "Token wygasł"
+    user:
+        already_exists: "Użytkownik już istnieje"

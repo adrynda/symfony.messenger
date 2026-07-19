@@ -8,7 +8,7 @@ use App\Core\UserInterface\DTO\TurboStreamDTO;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\Turbo\TurboBundle;
 
-
+/** @deprecated Do usunięcia najprawdopodobniej */
 abstract class AbstractTurboController extends AbstractCoreController
 {
     protected function turboRedirect(string $route, array $params = []): Response

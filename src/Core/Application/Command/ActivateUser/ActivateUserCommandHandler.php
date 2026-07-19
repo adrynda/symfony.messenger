@@ -25,11 +25,11 @@ final readonly class ActivateUserCommandHandler
         $userToken = $this->userTokenRepository->find($command->userTokenId);
 
         if (!$userToken || $userToken->type !== UserTokenTypeEnum::Activation) {
-            throw new \Exception('User token not found');
+            throw new \Exception("exception.user_token.not_found");
         }
 
         if (null !== $userToken->expiresAt && $userToken->expiresAt < new \DateTime()) {
-            throw new \Exception('User token expired');
+            throw new \Exception("exception.user_token.expired");
         }
 
         $user = $userToken->user;
