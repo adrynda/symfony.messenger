@@ -1,0 +1,51 @@
+{
+    "name": "olek/audit",
+    "description": "Entities changes history",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "oelk",
+        "audit"
+    ],
+    "authors": [
+        {
+            "name": "Aleksander Drynda",
+            "email": "olekdrynda@gmail.com"
+        }
+    ],
+    "homepage": "",
+    "require": {
+        "php": "^8.2",
+        "doctrine/orm": "^3.6",
+        "doctrine/persistence": "^4.2",
+        "psr/simple-cache": "^3.0"
+    },
+    "require-dev": {
+    },
+    "conflict": {
+    },
+    "suggest": {
+        "symfony/dependency-injection": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle",
+        "symfony/http-kernel": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle",
+        "symfony/messenger": "Required to use the Symfony Messenger-based dispatcher in Olek\\Audit\\Bridge\\Symfony",
+        "symfony/uid": "Required to use the Symfony Uid-based identifier in Olek\\Audit\\Bridge\\Symfony",
+        "symfony/yaml": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle"
+    },
+    "autoload": {
+        "psr-4": {
+            "Olek\\Audit\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Olek\\Audit\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+    }
+}

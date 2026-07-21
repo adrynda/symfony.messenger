@@ -1,0 +1,35 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Olek\Audit\Cache\FilesystemMetadataCache:
+        arguments:
+            $directory: '%kernel.cache_dir%/olek/audit/metadata'
+
+    Psr\SimpleCache\CacheInterface: '@Olek\Audit\Cache\FilesystemMetadataCache'
+
+    Olek\Audit\Factory\AuditMetadataFactory: ~
+
+    Olek\Audit\Factory\AuditPayloadFactory: ~
+
+    Olek\Audit\Factory\AuditFactory: ~
+
+    Olek\Audit\Repository\AuditRepository: ~
+
+    Olek\Audit\Bridge\Symfony\Identifier\SymfonyUidAuditIdGenerator: ~
+
+    Olek\Audit\Identifier\AuditIdGeneratorInterface: '@Olek\Audit\Bridge\Symfony\Identifier\SymfonyUidAuditIdGenerator'
+
+    Olek\Audit\Bridge\Symfony\Dispatcher\MessengerAuditPayloadDispatcher: ~
+
+    Olek\Audit\Dispatcher\AuditPayloadDispatcherInterface: '@Olek\Audit\Bridge\Symfony\Dispatcher\MessengerAuditPayloadDispatcher'
+
+    Olek\Audit\Listener\AuditListener:
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: postFlush }
+
+    Olek\Audit\Handler\AuditPayloadHandler:
+        tags:
+            - { name: messenger.message_handler, method: process }

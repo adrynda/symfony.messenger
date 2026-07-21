@@ -1,0 +1,10 @@
+doctrine:
+    dbal:
+        types:
+            audit_id: 'Olek\Audit\Doctrine\AuditIdType'
+    orm:
+        mappings:
+            Audit:
+                type: attribute
+                is_bundle: false
+                prefix: 'Olek\Audit\Entity'

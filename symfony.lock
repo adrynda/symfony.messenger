@@ -47,6 +47,9 @@
             "migrations/.gitignore"
         ]
     },
+    "olek/audit": {
+        "version": "dev-main"
+    },
     "symfony/asset-mapper": {
         "version": "7.4",
         "recipe": {

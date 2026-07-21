@@ -16,4 +16,5 @@ return [
     Symfony\UX\Turbo\TurboBundle::class => ['all' => true],
     App\Chat\ChatBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
+    Olek\Audit\Bridge\Symfony\AuditBundle::class => ['all' => true],
 ];

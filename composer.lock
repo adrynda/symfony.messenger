@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1000e656a8024a4aa42a8bbaee50e928",
+    "content-hash": "b4aa346b5f4ea2cdca66e0ec38b2d033",
     "packages": [
         {
             "name": "composer/semver",
@@ -1441,6 +1441,57 @@
             "time": "2026-01-02T08:56:05+00:00"
         },
         {
+            "name": "olek/audit",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "src/olek/audit",
+                "reference": "bf97b1fbb03f8392d09a2851076c324037072548"
+            },
+            "require": {
+                "doctrine/orm": "^3.6",
+                "doctrine/persistence": "^4.2",
+                "php": "^8.2",
+                "psr/simple-cache": "^3.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle",
+                "symfony/http-kernel": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle",
+                "symfony/messenger": "Required to use the Symfony Messenger-based dispatcher in Olek\\Audit\\Bridge\\Symfony",
+                "symfony/uid": "Required to use the Symfony Uid-based identifier in Olek\\Audit\\Bridge\\Symfony",
+                "symfony/yaml": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Olek\\Audit\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Olek\\Audit\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksander Drynda",
+                    "email": "olekdrynda@gmail.com"
+                }
+            ],
+            "description": "Entities changes history",
+            "keywords": [
+                "audit",
+                "oelk"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "phpdocumentor/reflection-common",
             "version": "2.2.0",
             "source": {
@@ -1968,6 +2019,57 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
             "time": "2024-09-11T13:17:53+00:00"
+        },
+        {
+            "name": "psr/simple-cache",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
+                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
+            },
+            "time": "2021-10-29T13:26:27+00:00"
         },
         {
             "name": "symfony/asset",
@@ -8831,7 +8933,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "olek/audit": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
