@@ -17,14 +17,14 @@ class Audit
         #[ORM\Column(type: AuditIdType::NAME)]
         public readonly AuditIdInterface $id,
 
-        #[ORM\Column(type: Types::TEXT)]
-        public string $username = '',
-
         #[ORM\Embedded(Entity::class)]
         public Entity $entity,
 
         #[ORM\Embedded(Action::class)]
         public Action $action,
+
+        #[ORM\Column(type: Types::TEXT, nullable: true)]
+        public ?string $actor = null,
 
         #[ORM\Column(type: Types::JSON)]
         public array $diff = [],
@@ -42,6 +42,7 @@ class Audit
                 type: $payload->actionType,
                 timestamp: $payload->timestamp,
             ),
+            actor: $payload->actor,
         );
     }
 }

@@ -3,6 +3,7 @@
 namespace Olek\Audit\Bridge\NativePhp;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Olek\Audit\Actor\NullActorResolver;
 use Olek\Audit\Cache\FilesystemMetadataCache;
 use Olek\Audit\Dispatcher\InlineAuditPayloadDispatcher;
 use Olek\Audit\Factory\AuditFactory;
@@ -22,7 +23,7 @@ final class AuditKit
     public static function register(EntityManagerInterface $entityManager, string $cacheDir): void
     {
         $metadataFactory = new AuditMetadataFactory(new FilesystemMetadataCache($cacheDir));
-        $payloadFactory = new AuditPayloadFactory($metadataFactory);
+        $payloadFactory = new AuditPayloadFactory($metadataFactory, new NullActorResolver());
         $auditFactory = new AuditFactory(new NativeAuditIdGenerator());
         $handler = new AuditPayloadHandler($entityManager, $auditFactory);
         $dispatcher = new InlineAuditPayloadDispatcher($handler);

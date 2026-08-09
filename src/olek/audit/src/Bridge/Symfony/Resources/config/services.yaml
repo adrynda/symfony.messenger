@@ -11,7 +11,13 @@ services:
 
     Olek\Audit\Factory\AuditMetadataFactory: ~
 
+    Olek\Audit\Actor\NullActorResolver: ~
+
+    Olek\Audit\Actor\ActorResolverInterface: '@Olek\Audit\Actor\NullActorResolver'
+
     Olek\Audit\Factory\AuditPayloadFactory: ~
+
+    Olek\Audit\Factory\AuditPayloadFactoryInterface: '@Olek\Audit\Factory\AuditPayloadFactory'
 
     Olek\Audit\Factory\AuditFactory: ~
 

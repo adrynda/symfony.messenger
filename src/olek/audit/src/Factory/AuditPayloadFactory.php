@@ -5,16 +5,18 @@ namespace Olek\Audit\Factory;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\PersistentCollection;
+use Olek\Audit\Actor\ActorResolverInterface;
 use Olek\Audit\Doctrine\EntityIdentifierResolver;
 use Olek\Audit\DTO\AuditMetadata;
 use Olek\Audit\DTO\AuditPayload;
 use Olek\Audit\DTO\EntityPropertyDiff;
 use Olek\Audit\Enum\AuditActionTypeEnum;
 
-final class AuditPayloadFactory
+final class AuditPayloadFactory implements AuditPayloadFactoryInterface
 {
     public function __construct(
         private readonly AuditMetadataFactory $metadataFactory,
+        private readonly ActorResolverInterface $actorResolver,
     ) {}
 
     public function buildForUpdate(EntityManagerInterface $em, object $entity): ?AuditPayload
@@ -61,6 +63,7 @@ final class AuditPayloadFactory
             actionType: AuditActionTypeEnum::Update,
             diff: $diff,
             timestamp: new DateTimeImmutable(),
+            actor: $this->actorResolver->resolve(),
         );
     }
 
@@ -109,6 +112,7 @@ final class AuditPayloadFactory
             actionType: AuditActionTypeEnum::Delete,
             diff: $diff,
             timestamp: new DateTimeImmutable(),
+            actor: $this->actorResolver->resolve(),
         );
     }
 

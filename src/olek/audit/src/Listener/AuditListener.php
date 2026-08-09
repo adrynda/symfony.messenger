@@ -6,7 +6,7 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 use Olek\Audit\Dispatcher\AuditPayloadDispatcherInterface;
 use Olek\Audit\DTO\AuditPayload;
-use Olek\Audit\Factory\AuditPayloadFactory;
+use Olek\Audit\Factory\AuditPayloadFactoryInterface;
 
 final class AuditListener
 {
@@ -14,7 +14,7 @@ final class AuditListener
     private array $pendingAudits = [];
 
     public function __construct(
-        private readonly AuditPayloadFactory $payloadFactory,
+        private readonly AuditPayloadFactoryInterface $payloadFactory,
         private readonly AuditPayloadDispatcherInterface $dispatcher,
     ) {}
 

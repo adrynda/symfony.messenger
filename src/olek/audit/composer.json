@@ -13,7 +13,6 @@
             "email": "olekdrynda@gmail.com"
         }
     ],
-    "homepage": "",
     "require": {
         "php": "^8.2",
         "doctrine/orm": "^3.6",
@@ -21,9 +20,12 @@
         "psr/simple-cache": "^3.0"
     },
     "require-dev": {
+        "codeception/codeception": "^5.3",
+        "codeception/module-asserts": "^3.2",
+        "symfony/messenger": "^7.4",
+        "symfony/uid": "^7.4"
     },
-    "conflict": {
-    },
+    "conflict": {},
     "suggest": {
         "symfony/dependency-injection": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle",
         "symfony/http-kernel": "Required to use the Olek\\Audit\\Bridge\\Symfony bundle",
@@ -42,10 +44,8 @@
         }
     },
     "config": {
-        "allow-plugins": {
-        },
+        "allow-plugins": {},
         "sort-packages": true
     },
-    "scripts": {
-    }
+    "scripts": {}
 }

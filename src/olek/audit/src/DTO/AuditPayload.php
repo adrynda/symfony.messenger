@@ -15,5 +15,6 @@ final readonly class AuditPayload
         public AuditActionTypeEnum $actionType,
         public array $diff,
         public \DateTimeImmutable $timestamp,
+        public ?string $actor = null,
     ) {}
 }
